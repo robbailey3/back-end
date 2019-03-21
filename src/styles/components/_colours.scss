@@ -1,0 +1,15 @@
+$color-scheme: (
+  'primary': rgb(67, 146, 241),
+  'secondary': rgb(39, 70, 144),
+  'accent': rgb(219, 84, 97),
+  'background': rgb(248, 253, 255),
+  'nearly-black': rgb(27, 27, 30)
+);
+
+@function color($name) {
+  @if (map-has-key($color-scheme, $name)) {
+    @return map-get($color-scheme, $name);
+  } @else {
+    @error "Incorrect colour name used (#{$name}). Correct colours are #{map-keys($color-scheme)}";
+  }
+}

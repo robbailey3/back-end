@@ -1,0 +1,13 @@
+@import '../../../styles/components/colours';
+#page-header {
+  padding: 8px 16px;
+  background: linear-gradient(
+    45deg,
+    color(primary),
+    lighten(color(primary), 5%)
+  );
+  box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.3);
+  position: relative;
+  margin-left: 225px;
+  width: calc(100% - 225px);
+}

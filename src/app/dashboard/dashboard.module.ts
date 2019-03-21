@@ -1,3 +1,4 @@
+import { SharedModule } from './../shared/shared.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TodoListComponent } from './todo-list/todo-list.component';
@@ -5,8 +6,6 @@ import { DashboardRootComponent } from './dashboard-root/dashboard-root.componen
 
 @NgModule({
   declarations: [TodoListComponent, DashboardRootComponent],
-  imports: [
-    CommonModule
-  ]
+  imports: [CommonModule, SharedModule]
 })
-export class DashboardModule { }
+export class DashboardModule {}
