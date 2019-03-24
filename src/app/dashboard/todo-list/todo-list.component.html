@@ -2,8 +2,16 @@
   <rb-card>
     <div id="todo-list">
       <ul>
-        <li *ngFor="let todo of todos">
-          {{ todo.todo }}
+        <li *ngFor="let todo of todos; index as i">
+          <div class="form-group">
+            <input
+              type="checkbox"
+              name="todo-{{ i }}"
+              id="todo-{{ i }}"
+              [checked]="todo.status === '1'"
+            />
+            <label for="todo-{{ i }}">{{ todo.todo }}</label>
+          </div>
         </li>
       </ul>
     </div>
