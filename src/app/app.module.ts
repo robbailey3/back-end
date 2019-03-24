@@ -11,6 +11,7 @@ import { BlogModule } from './blog/blog.module';
 import { ErrorLogModule } from './error-log/error-log.module';
 import { SettingsModule } from './settings/settings.module';
 import { SharedModule } from './shared/shared.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [AppComponent],
@@ -23,7 +24,8 @@ import { SharedModule } from './shared/shared.module';
     BlogModule,
     ErrorLogModule,
     PhotosModule,
-    SettingsModule
+    SettingsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

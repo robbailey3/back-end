@@ -1,5 +1,11 @@
 #main-content {
-  margin-left: 225px;
-  width: calc(100% - 225px);
-  padding: 16px;
+  padding: 32px;
+  width: 100%;
+  margin: 0;
+  transition: 0.4s cubic-bezier(0.8, -0.6, 0.2, 1.5);
+  min-height: 77%;
+  &.menu-active {
+    width: calc(100% - 225px);
+    margin-left: 225px;
+  }
 }

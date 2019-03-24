@@ -1,3 +1,11 @@
 <section id="todo-container">
-  <rb-card><h1>Foo</h1></rb-card>
+  <rb-card>
+    <div id="todo-list">
+      <ul>
+        <li *ngFor="let todo of todos">
+          {{ todo.todo }}
+        </li>
+      </ul>
+    </div>
+  </rb-card>
 </section>

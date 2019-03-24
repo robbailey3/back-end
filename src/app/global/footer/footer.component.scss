@@ -1,0 +1,16 @@
+@import '../../../styles/components/colours';
+#page-footer {
+  margin: 0;
+  width: 100%;
+  transition: 0.4s cubic-bezier(0.8, -0.6, 0.2, 1.5);
+  padding: 16px;
+  background: linear-gradient(
+    30deg,
+    color(primary),
+    darken(color(primary), 15%)
+  );
+  &.menu-active {
+    width: calc(100% - 225px);
+    margin-left: 225px;
+  }
+}

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { NavigationService } from '../navigation/navigation.service';
 
 @Component({
   selector: 'rb-header',
@@ -6,10 +7,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
+  public menuActive = true;
+  constructor(private navService: NavigationService) {}
 
-  constructor() { }
-
-  ngOnInit() {
+  ngOnInit() {}
+  menuButtonClickHandler() {
+    this.menuActive = !this.menuActive;
+    this.navService.buttonStatus(this.menuActive);
   }
-
 }

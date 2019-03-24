@@ -1,3 +1,4 @@
+import { NavigationService } from './../navigation/navigation.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,10 +7,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./footer.component.scss']
 })
 export class FooterComponent implements OnInit {
-
-  constructor() { }
+  public menuActive = true;
+  constructor(private navService: NavigationService) {}
 
   ngOnInit() {
+    this.addNavSubscription();
   }
-
+  addNavSubscription() {
+    this.navService.$menuStatus.subscribe((response: boolean) => {
+      this.menuActive = response;
+    });
+  }
 }
