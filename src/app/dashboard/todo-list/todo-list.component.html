@@ -4,13 +4,13 @@
       <ul>
         <li *ngFor="let todo of todos; index as i">
           <div class="form-group">
-            <input
-              type="checkbox"
-              name="todo-{{ i }}"
-              id="todo-{{ i }}"
+            <rb-checkbox
               [checked]="todo.status === '1'"
-            />
-            <label for="todo-{{ i }}">{{ todo.todo }}</label>
+              [label]="todo.todo"
+              [id]="'todo-' + todo.todoID"
+              [name]="'todo-' + todo.todoID"
+              (isChecked)="checkboxChecked($event, todo.todoID)"
+            ></rb-checkbox>
           </div>
         </li>
       </ul>

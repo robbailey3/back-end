@@ -13,4 +13,7 @@ export class TodoService {
   getTodos(): Observable<APIResponse> {
     return this.http.get<APIResponse>(this.URL_BASE);
   }
+  changeTodoStatus(id: number, status: boolean): Observable<APIResponse> {
+    return this.http.patch<APIResponse>(`${this.URL_BASE}/${id}`, status);
+  }
 }

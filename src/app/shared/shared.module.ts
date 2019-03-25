@@ -1,3 +1,4 @@
+import { CheckboxComponent } from './forms/form-items/checkbox/checkbox.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CardComponent } from './components/card/card.component';
@@ -11,13 +12,15 @@ import { EditorModule } from '@tinymce/tinymce-angular';
     CardComponent,
     FlexContainerComponent,
     HamburgerButtonComponent,
-    TinymceComponent
+    TinymceComponent,
+    CheckboxComponent
   ],
   exports: [
     CardComponent,
     FlexContainerComponent,
     HamburgerButtonComponent,
-    TinymceComponent
+    TinymceComponent,
+    CheckboxComponent
   ],
   imports: [CommonModule, EditorModule]
 })

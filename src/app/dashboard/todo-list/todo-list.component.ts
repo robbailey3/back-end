@@ -20,4 +20,7 @@ export class TodoListComponent implements OnInit {
       this.todos = response.response.results as Todo[];
     });
   }
+  checkboxChecked($event, todoID) {
+    this.service.changeTodoStatus(todoID, $event).subscribe();
+  }
 }

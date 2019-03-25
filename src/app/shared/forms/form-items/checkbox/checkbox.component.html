@@ -1,0 +1,11 @@
+<div class="form-group">
+  <input
+    class="custom-checkbox"
+    type="checkbox"
+    [id]="id"
+    [checked]="checked"
+    [name]="name"
+    (change)="checkboxChange($event)"
+  />
+  <label [for]="name">{{ label }}</label>
+</div>

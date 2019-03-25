@@ -1,0 +1,33 @@
+@import '../../../../../styles/components/colours';
+input.custom-checkbox {
+  position: absolute;
+  left: -10000px;
+  + label {
+    padding-left: 35px;
+    position: relative;
+    cursor: pointer;
+    &::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 18px;
+      width: 18px;
+      border: 2px solid color(accent);
+      border-radius: 4px;
+      color: #fff;
+      line-height: 1;
+      font-size: 20px;
+    }
+  }
+  &:checked {
+    + label {
+      color: #999;
+      text-decoration: line-through;
+      &::before {
+        content: '✔';
+        background: color(accent);
+      }
+    }
+  }
+}
