@@ -1,10 +1,12 @@
 @import '../../../styles/components/colours';
+
 #page-footer {
   margin: 0;
   width: 100%;
-  transition: 0.4s cubic-bezier(0.8, -0.6, 0.2, 1.5);
+  transition: 0.4s cubic-bezier(0.8, 0, 0.2, 1);
   padding: 16px;
   background: linear-gradient(30deg, #aaa, #ddd);
+
   &.menu-active {
     width: calc(100% - 225px);
     margin-left: 225px;

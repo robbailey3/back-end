@@ -8,7 +8,6 @@ import { SettingsComponent } from './settings/settings/settings.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', component: DashboardRootComponent },
-  { path: 'blog', component: BlogRootComponent },
   { path: 'errors', component: ErrorLogRootComponent },
   { path: 'photos', component: PhotosRootComponent },
   { path: 'settings', component: SettingsComponent }

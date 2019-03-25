@@ -1,9 +1,16 @@
 import { TestBed } from '@angular/core/testing';
 
 import { TodoService } from './todo.service';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { HttpClientModule } from '@angular/common/http';
 
 describe('TodoService', () => {
-  beforeEach(() => TestBed.configureTestingModule({}));
+  beforeEach(() =>
+    TestBed.configureTestingModule({
+      imports: [HttpClientTestingModule],
+      providers: [TodoService, HttpClientModule]
+    })
+  );
 
   it('should be created', () => {
     const service: TodoService = TestBed.get(TodoService);

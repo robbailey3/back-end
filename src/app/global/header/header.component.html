@@ -1,14 +1,5 @@
 <header id="page-header" [class.menu-active]="menuActive">
   <div id="nav-toggle-container">
-    <button
-      id="nav-toggle"
-      class="hamburger-btn"
-      (click)="menuButtonClickHandler()"
-    >
-      <span class="sr-only">Toggle Menu</span>
-      <span class="hamburger-bar"></span>
-      <span class="hamburger-bar"></span>
-      <span class="hamburger-bar"></span>
-    </button>
+    <rb-button-hamburger (click)="menuButtonClickHandler()"></rb-button-hamburger>
   </div>
 </header>
