@@ -15,7 +15,7 @@ export class BlogListComponent implements OnInit {
     this.getBlogPosts();
   }
   getBlogPosts() {
-    this.service.getAll().subscribe(res => {
+    this.service.getAll().subscribe((res: any) => {
       this.posts = res.response.results as Post[];
     });
   }
