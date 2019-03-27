@@ -1,1 +1,17 @@
-.btn {}
+.btn {
+}
+.btn-ghost {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+  &:hover,
+  &:focus {
+    background: rgba(#000, 0.1);
+  }
+}
+.btn-round {
+  border-radius: 50%;
+  line-height: 0;
+  padding: 5px;
+}

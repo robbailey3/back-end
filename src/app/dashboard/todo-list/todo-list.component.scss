@@ -7,4 +7,16 @@
   li {
     list-style: none;
   }
+  .form-group {
+    position: relative;
+    .delete-todo {
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+    label {
+      display: block;
+      max-width: 75%;
+    }
+  }
 }

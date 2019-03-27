@@ -12,6 +12,7 @@ import { ErrorLogModule } from './error-log/error-log.module';
 import { SettingsModule } from './settings/settings.module';
 import { SharedModule } from './shared/shared.module';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [AppComponent],
@@ -25,7 +26,8 @@ import { HttpClientModule } from '@angular/common/http';
     ErrorLogModule,
     PhotosModule,
     SettingsModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

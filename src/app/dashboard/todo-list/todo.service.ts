@@ -16,4 +16,10 @@ export class TodoService {
   changeTodoStatus(id: number, status: boolean): Observable<APIResponse> {
     return this.http.patch<APIResponse>(`${this.URL_BASE}/${id}`, status);
   }
+  newTodo(data): Observable<APIResponse> {
+    return this.http.post<APIResponse>(`${this.URL_BASE}`, data);
+  }
+  deleteTodo(id): Observable<APIResponse> {
+    return this.http.delete<APIResponse>(`${this.URL_BASE}/${id}`);
+  }
 }

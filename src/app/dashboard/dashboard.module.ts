@@ -1,3 +1,4 @@
+import { FormsModule } from '@angular/forms';
 import { SharedModule } from './../shared/shared.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -7,7 +8,7 @@ import { TodoService } from './todo-list/todo.service';
 
 @NgModule({
   declarations: [TodoListComponent, DashboardRootComponent],
-  imports: [CommonModule, SharedModule],
+  imports: [CommonModule, SharedModule, FormsModule],
   providers: [TodoService]
 })
 export class DashboardModule {}
