@@ -1,17 +1,58 @@
+@import './colours';
 .btn {
-}
-.btn-ghost {
-  background: transparent;
+  font-family: inherit;
+  font-size: 0.95em;
+  padding: 8px 12px;
+  background: color(primary);
   border: none;
+  color: #fff;
+  transition: 0.3s ease-in-out;
+  box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.125);
   cursor: pointer;
-  transition: 0.3s;
+  border-radius: 5px;
   &:hover,
   &:focus {
-    background: rgba(#000, 0.1);
+    background: darken(color(primary), 15%);
+  }
+  &.btn-danger {
+    background: #bb0020;
+    color: #fff;
+    &:hover,
+    &:focus {
+      background: darken(#bb0020, 15%);
+    }
+  }
+  &.btn-ghost {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+    color: #444;
+    box-shadow: none;
+    &:hover,
+    &:focus {
+      background: rgba(#000, 0.1);
+    }
+  }
+  &.btn-round {
+    border-radius: 50%;
+    line-height: 0;
+    padding: 5px;
+  }
+  &:disabled {
+    background: #ddd;
+    color: #999;
+    cursor: not-allowed;
   }
 }
-.btn-round {
-  border-radius: 50%;
-  line-height: 0;
-  padding: 5px;
+.btn-group {
+  .btn {
+    border-radius: 0;
+    &:first-of-type {
+      border-radius: 5px 0 0 5px;
+    }
+    &:last-of-type {
+      border-radius: 0 5px 5px 0;
+    }
+  }
 }

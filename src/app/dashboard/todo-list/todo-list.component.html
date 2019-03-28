@@ -9,9 +9,17 @@
           name="todo"
           id="todo"
           min-length="3"
+          class="form-control"
+          (keyup.enter)="submitTodo()"
         />
       </div>
-      <button (click)="submitTodo()">Add</button>
+      <button
+        (click)="submitTodo()"
+        class="btn btn-primary"
+        [disabled]="!newTodo || newTodo.length < 2"
+      >
+        Add
+      </button>
     </div>
     <div id="todo-list">
       <ul>
@@ -25,7 +33,7 @@
               (isChecked)="checkboxChecked($event, todo.todoID)"
             ></rb-checkbox>
             <button
-              class="delete-todo btn-ghost btn-round"
+              class="delete-todo btn btn-ghost btn-round"
               (click)="deleteTodo(todo.todoID)"
             >
               <i class="material-icons">
