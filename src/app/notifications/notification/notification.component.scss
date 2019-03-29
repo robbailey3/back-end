@@ -1,0 +1,33 @@
+:host {
+  position: relative;
+  display: block;
+}
+
+.notification {
+  padding: 4px 16px;
+  background: #fff;
+  box-shadow: 0 3px 12px 0 rgba(0, 0, 0, .325);
+  width: 500px;
+  border-radius: 8px;
+  position: relative;
+  margin: 8px 0;
+
+  i.material-icons {
+    color: #333;
+  }
+
+  .notification-close {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+  }
+
+  &.success {
+    background: green;
+    color: #fff;
+
+    i.material-icons {
+      color: #fff;
+    }
+  }
+}

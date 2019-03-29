@@ -1,8 +1,8 @@
 import { PhotosModule } from './photos/photos.module';
-import { RouterModule } from '@angular/router';
 import { GlobalModule } from './global/global.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -13,6 +13,7 @@ import { SettingsModule } from './settings/settings.module';
 import { SharedModule } from './shared/shared.module';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { NotificationsModule } from './notifications/notifications.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -27,7 +28,9 @@ import { FormsModule } from '@angular/forms';
     PhotosModule,
     SettingsModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    NotificationsModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

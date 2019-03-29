@@ -1,0 +1,4 @@
+<div class="notification" [class.success]="notification.type == 'success'">
+  <button (click)="close()" class="btn btn-ghost btn-round notification-close" *ngIf="notification.cancellable"><i class="material-icons">close</i></button>
+  <p>{{ notification.message }}</p>
+</div>
