@@ -1,0 +1,85 @@
+<div [formGroup]="form">
+  <label [for]="question.key">{{ question.label }}</label>
+
+  <div [ngSwitch]="question.controlType" class="form-control-container">
+    <!-- Standard text input field -->
+    <input
+      *ngSwitchCase="'textbox'"
+      [formControlName]="question.key"
+      [id]="question.key"
+      [type]="question['type']"
+      class="form-control"
+      [required]="question.required"
+    />
+    <!-- Range input field -->
+    <input
+      type="range"
+      [name]="question.key"
+      [id]="question.key"
+      [min]="question['min']"
+      [max]="question['max']"
+      [step]="question['step']"
+      *ngSwitchCase="'range'"
+      class="form-control"
+      [required]="question.required"
+    />
+    <!-- Password input field -->
+    <input
+      type="password"
+      [name]="question.key"
+      [id]="question.key"
+      class="form-control"
+      *ngSwitchCase="'password'"
+      [required]="question.required"
+    />
+    <!-- Select item input -->
+    <select
+      [id]="question.key"
+      *ngSwitchCase="'dropdown'"
+      [formControlName]="question.key"
+      [multiple]="question['multiple']"
+      class="form-control"
+      [required]="question.required"
+    >
+      <option *ngFor="let opt of question['options']" [value]="opt">{{
+        opt
+      }}</option>
+    </select>
+    <!-- wysiwyg item input -->
+    <rb-tinymce *ngSwitchCase="'wysiwyg'"></rb-tinymce>
+    <!-- Radio item input -->
+    <fieldset *ngSwitchCase="'radio'">
+      <legend>{{ question.label }}</legend>
+      <div class="form-group" *ngFor="let option of question['options']">
+        <input
+          type="radio"
+          [name]="question.key"
+          [id]="option.value"
+          class="form-control"
+          [value]="option.value"
+        />
+        <label [for]="option.value">{{ option.key }}</label>
+      </div>
+    </fieldset>
+    <!-- Checkbox item input -->
+    <fieldset *ngSwitchCase="'checkbox'">
+      <legend>{{ question.label }}</legend>
+      <div
+        class="form-group"
+        *ngFor="let option of question['options']; let i = index"
+      >
+        <input
+          type="checkbox"
+          [name]="question.key"
+          id="{{ question.key }}-{{ i }}"
+          class="form-control"
+        />
+        <label for="{{ question.key }}-{{ i }}">{{ option }}</label>
+      </div>
+    </fieldset>
+  </div>
+
+  <div class="errorMessage" *ngIf="!isValid">
+    {{ question.label }} is required
+  </div>
+</div>

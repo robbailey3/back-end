@@ -21,8 +21,8 @@
         Add
       </button>
     </div>
-    <div id="todo-list">
-      <ul>
+    <div id="todo-list" *ngIf="todos">
+      <ul [@listAnimation]="todos.length">
         <li *ngFor="let todo of todos; index as i">
           <div class="form-group">
             <rb-checkbox
@@ -34,7 +34,7 @@
             ></rb-checkbox>
             <button
               class="delete-todo btn btn-ghost btn-round"
-              (click)="deleteTodo(todo.todoID)"
+              (click)="deleteTodo(todo)"
             >
               <i class="material-icons">
                 delete

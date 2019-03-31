@@ -6,6 +6,9 @@ import { FlexContainerComponent } from './components/flex-container/flex-contain
 import { HamburgerButtonComponent } from './components/buttons/hamburgerButton/hamburgerButton.component';
 import { TinymceComponent } from './forms/form-items/tinymce/tinymce.component';
 import { EditorModule } from '@tinymce/tinymce-angular';
+import { FormComponent } from './forms/form/form.component';
+import { FormItemComponent } from './forms/form-item/form-item.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -13,15 +16,18 @@ import { EditorModule } from '@tinymce/tinymce-angular';
     FlexContainerComponent,
     HamburgerButtonComponent,
     TinymceComponent,
-    CheckboxComponent
+    CheckboxComponent,
+    FormComponent,
+    FormItemComponent
   ],
   exports: [
     CardComponent,
     FlexContainerComponent,
     HamburgerButtonComponent,
     TinymceComponent,
-    CheckboxComponent
+    CheckboxComponent,
+    FormComponent
   ],
-  imports: [CommonModule, EditorModule]
+  imports: [CommonModule, EditorModule, FormsModule, ReactiveFormsModule]
 })
 export class SharedModule {}

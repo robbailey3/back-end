@@ -1,3 +1,4 @@
+import { listAnimation } from './../../shared/animations/src/list.animation';
 import { APIResponse } from './../../shared/interfaces/api-response';
 import { Component, OnInit } from '@angular/core';
 import { TodoService } from './todo.service';
@@ -6,7 +7,8 @@ import { Todo } from './todo';
 @Component({
   selector: 'rb-todo-list',
   templateUrl: './todo-list.component.html',
-  styleUrls: ['./todo-list.component.scss']
+  styleUrls: ['./todo-list.component.scss'],
+  animations: [listAnimation]
 })
 export class TodoListComponent implements OnInit {
   todos: Todo[];
@@ -31,9 +33,8 @@ export class TodoListComponent implements OnInit {
       this.newTodo = '';
     });
   }
-  deleteTodo(id) {
-    this.service.deleteTodo(id).subscribe(() => {
-      this.getData();
-    });
+  deleteTodo(todo: Todo) {
+    this.service.deleteTodo(todo.todoID).subscribe();
+    this.todos.splice(this.todos.indexOf(todo), 1);
   }
 }
