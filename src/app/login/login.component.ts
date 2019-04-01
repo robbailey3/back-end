@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 import { TextQuestion } from '../shared/forms/questions/text-question';
 import { RangeQuestion } from '../shared/forms/questions/range-question';
 import { DropdownQuestion } from '../shared/forms/questions/dropdown-question';
+import { Validators } from '@angular/forms';
 
 @Component({
   selector: 'rb-login',
@@ -19,17 +20,19 @@ export class LoginComponent implements OnInit {
       label: 'Username',
       key: 'username',
       type: 'email',
-      required: true
+      value: 'Foo',
+      validators: [Validators.minLength(4), Validators.required]
     }),
     new DropdownQuestion({
       label: 'Select',
       key: 'select-question',
-      multiple: true,
-      options: ['Hello World', 'blah blah blah', 'c', 'd']
+      options: ['Hello World', 'blah blah blah', 'c', 'd'],
+      value: ''
     }),
     new WysiwygQuestion({
       label: 'Rich Text',
-      key: 'rich-text-key'
+      key: 'rich-text-key',
+      value: '<p>Hello World</p>'
     }),
     new RadioQuestion({
       label: 'Radio Question',
@@ -40,16 +43,14 @@ export class LoginComponent implements OnInit {
     new CheckboxQuestion({
       label: 'Checkbox Question',
       key: 'checkbox',
-      options: ['1', '2', '3'],
-      required: true
+      options: ['1', '2', '3']
     }),
     new RangeQuestion({
       label: 'Range Question',
       key: 'foo2',
       min: 10,
       max: 100,
-      step: 10,
-      required: true
+      step: 10
     }),
     new PasswordQuestion({
       label: 'Password',

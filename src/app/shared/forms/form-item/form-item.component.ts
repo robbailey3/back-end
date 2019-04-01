@@ -11,11 +11,15 @@ export class FormItemComponent implements OnInit {
   @Input() question: QuestionBase<any>;
   @Input() form: FormGroup;
   get isValid() {
-    return false;
+    return this.form.controls[this.question.key].valid;
   }
-  constructor() {
-    console.log(this);
+  get isInvalid() {
+    return (
+      this.form.controls[this.question.key].invalid &&
+      !this.form.controls[this.question.key].pristine
+    );
   }
+  constructor() {}
 
   ngOnInit() {}
 }

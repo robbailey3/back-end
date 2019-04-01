@@ -9,7 +9,7 @@
       [id]="question.key"
       [type]="question['type']"
       class="form-control"
-      [required]="question.required"
+      [value]="question.value"
     />
     <!-- Range input field -->
     <input
@@ -21,7 +21,6 @@
       [step]="question['step']"
       *ngSwitchCase="'range'"
       class="form-control"
-      [required]="question.required"
     />
     <!-- Password input field -->
     <input
@@ -30,7 +29,6 @@
       [id]="question.key"
       class="form-control"
       *ngSwitchCase="'password'"
-      [required]="question.required"
     />
     <!-- Select item input -->
     <select
@@ -39,14 +37,14 @@
       [formControlName]="question.key"
       [multiple]="question['multiple']"
       class="form-control"
-      [required]="question.required"
     >
+      <option value=""></option>
       <option *ngFor="let opt of question['options']" [value]="opt">{{
         opt
       }}</option>
     </select>
     <!-- wysiwyg item input -->
-    <rb-tinymce *ngSwitchCase="'wysiwyg'"></rb-tinymce>
+    <rb-tinymce *ngSwitchCase="'wysiwyg'" [value]="question.value"></rb-tinymce>
     <!-- Radio item input -->
     <fieldset *ngSwitchCase="'radio'">
       <legend>{{ question.label }}</legend>
@@ -79,7 +77,7 @@
     </fieldset>
   </div>
 
-  <div class="errorMessage" *ngIf="!isValid">
+  <div class="errorMessage" *ngIf="isInvalid">
     {{ question.label }} is required
   </div>
 </div>
