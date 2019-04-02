@@ -15,49 +15,25 @@ import { Validators } from '@angular/forms';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+  constructor(private authService: AuthService) {}
   public questions = [
     new TextQuestion({
-      label: 'Username',
-      key: 'username',
+      label: 'E-mail Address',
+      key: 'email',
+      value: '',
       type: 'email',
-      value: 'Foo',
-      validators: [Validators.minLength(4), Validators.required]
-    }),
-    new DropdownQuestion({
-      label: 'Select',
-      key: 'select-question',
-      options: ['Hello World', 'blah blah blah', 'c', 'd'],
-      value: ''
-    }),
-    new WysiwygQuestion({
-      label: 'Rich Text',
-      key: 'rich-text-key',
-      value: '<p>Hello World</p>'
-    }),
-    new RadioQuestion({
-      label: 'Radio Question',
-      key: 'foo',
-      options: [{ key: 'One', value: 1 }, { key: 'Two', value: 2 }],
-      required: true
-    }),
-    new CheckboxQuestion({
-      label: 'Checkbox Question',
-      key: 'checkbox',
-      options: ['1', '2', '3']
-    }),
-    new RangeQuestion({
-      label: 'Range Question',
-      key: 'foo2',
-      min: 10,
-      max: 100,
-      step: 10
+      validators: [Validators.required, Validators.email]
     }),
     new PasswordQuestion({
       label: 'Password',
-      key: 'foo-password'
+      key: 'password',
+      value: '',
+      validators: [Validators.required, Validators.minLength(6)]
     })
   ];
-  constructor(private authService: AuthService) {}
+  submitLoginForm(val: any) {
+    console.log(val);
+  }
 
   ngOnInit() {}
 }

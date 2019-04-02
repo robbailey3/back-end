@@ -1,9 +1,10 @@
 #main-content {
-  padding: 32px;
   width: 100%;
   margin: 0;
   transition: 0.4s cubic-bezier(0.8, 0, 0.2, 1);
   min-height: 77%;
+  height: calc(100% - 162px);
+  overflow-y: auto;
 
   &.menu-active {
     width: calc(100% - 225px);

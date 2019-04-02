@@ -11,7 +11,6 @@ export class NotificationService {
   constructor() {}
 
   addNotification(notification: Notification) {
-    console.log(notification);
     this.notifications.push(notification);
     this.subject.next(this.notifications);
   }

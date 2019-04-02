@@ -11,16 +11,21 @@ export class QuestionControlService {
     const group: any = {};
 
     questions.forEach((question: QuestionBase<any>) => {
-      if (
-        question.controlType === 'checkbox' ||
-        question.controlType === 'radio'
-      ) {
-        const arr = new FormArray([]);
-        question['options'].forEach(() => {
-          const control = new FormControl();
-          arr.push(control);
+      if (false) {
+        const formgroup = new FormGroup({});
+        question['options'].forEach((option: any) => {
+          formgroup.addControl(question.key, new FormControl(option.value));
         });
-        group[question.key] = arr;
+        group[question.key] = formgroup;
+      } else if (question.controlType === 'checkbox') {
+        const formgroup = new FormGroup({});
+        question['options'].forEach((option: any) => {
+          formgroup.addControl(
+            option.key,
+            new FormControl(question.value === option.value)
+          );
+        });
+        group[question.key] = formgroup;
       } else {
         group[question.key] = new FormControl(
           question.value,

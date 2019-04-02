@@ -17,7 +17,7 @@ export class QuestionBase<T> {
       validators?: ValidatorFn[];
     } = {}
   ) {
-    this.value = options.value;
+    this.value = options.value || null;
     this.key = options.key || '';
     this.label = options.label || '';
     this.order = options.order === undefined ? 1 : options.order;

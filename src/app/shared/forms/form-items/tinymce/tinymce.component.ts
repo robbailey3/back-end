@@ -15,10 +15,10 @@ declare var tinymce: any;
     }
   ]
 })
-export class TinymceComponent implements OnInit, ControlValueAccessor {
-  @Input() value: string;
+export class TinymceComponent implements ControlValueAccessor {
   @Input() inline = false;
-  val: string;
+  @Input() value: string;
+  onChange;
   public settings = {
     height: 400,
     plugins: `print preview searchreplace autolink directionality emoticons
@@ -34,21 +34,16 @@ export class TinymceComponent implements OnInit, ControlValueAccessor {
     file_picker_types: 'image'
   };
   constructor() {}
-  ngOnInit() {}
-  onChange() {
-    console.log(this.value);
-    this.propagateChange(this.value);
+  writeValue(value: string): void {
+    this.value = value;
   }
-  writeValue(value: string) {
-    if (value) {
-      this.val = value;
-    }
+  registerOnChange(fn: any): void {
+    this.onChange = fn;
   }
-  propagateChange = (_: any) => {};
+  registerOnTouched(fn: any): void {}
 
-  registerOnChange(fn) {
-    this.propagateChange = fn;
+  change($event) {
+    console.log($event);
+    this.onChange(this.value);
   }
-
-  registerOnTouched() {}
 }

@@ -1,13 +1,15 @@
 import { FormGroup } from '@angular/forms';
 import { QuestionBase } from './../questions/question-base';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { growIn } from '../../animations';
 
 @Component({
   selector: 'rb-form-item',
   templateUrl: './form-item.component.html',
-  styleUrls: ['./form-item.component.scss']
+  styleUrls: ['./form-item.component.scss'],
+  animations: [growIn]
 })
-export class FormItemComponent implements OnInit {
+export class FormItemComponent {
   @Input() question: QuestionBase<any>;
   @Input() form: FormGroup;
   get isValid() {
@@ -19,7 +21,4 @@ export class FormItemComponent implements OnInit {
       !this.form.controls[this.question.key].pristine
     );
   }
-  constructor() {}
-
-  ngOnInit() {}
 }

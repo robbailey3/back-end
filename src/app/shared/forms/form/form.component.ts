@@ -1,7 +1,7 @@
 import { QuestionControlService } from './../question-control.service';
 import { FormGroup } from '@angular/forms';
 import { QuestionBase } from './../questions/question-base';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'rb-form',
@@ -10,14 +10,20 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class FormComponent implements OnInit {
   @Input() questions: QuestionBase<any>[] = [];
+  @Input() buttonText: string;
+  @Output() submit: EventEmitter<any> = new EventEmitter();
   form: FormGroup;
-  payLoad = '';
+  payload = '';
   constructor(private service: QuestionControlService) {}
 
   ngOnInit() {
+    if (!this.buttonText) {
+      throw new Error('buttonText was not defined');
+    }
     this.form = this.service.toFormGroup(this.questions);
   }
   onSubmit() {
-    this.payLoad = JSON.stringify(this.form.value);
+    this.payload = JSON.stringify(this.form.value);
+    this.submit.emit(this.payload);
   }
 }
