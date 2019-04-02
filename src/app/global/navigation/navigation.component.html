@@ -3,7 +3,12 @@
   <nav>
     <ul>
       <li><a [routerLink]="['']">Dashboard</a></li>
-      <li><a [routerLink]="['blog']">Blog</a></li>
+      <li class="has-submenu"><a (click)="toggleSubmenu('blog')">Blog</a>
+        <ul class="submenu" *ngIf="submenus.blog">
+          <li><a [routerLink]="['blog']">View</a></li>
+          <li><a [routerLink]="['blog/create']">New</a></li>
+        </ul>
+      </li>
       <li><a [routerLink]="['photos']">Photos</a></li>
       <li><a [routerLink]="['errors']">Error Log</a></li>
       <li><a [routerLink]="['settings']">Settings</a></li>

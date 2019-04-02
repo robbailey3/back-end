@@ -8,6 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavigationComponent implements OnInit {
   public menuActive = true;
+  public submenus = {
+    blog: false
+  };
   constructor(private navService: NavigationService) {}
 
   ngOnInit() {
@@ -18,5 +21,10 @@ export class NavigationComponent implements OnInit {
       console.log(response);
       this.menuActive = response;
     });
+  }
+  toggleSubmenu(submenu: string) {
+    if (this.submenus[submenu] !== undefined) {
+      this.submenus[submenu] = !this.submenus[submenu];
+    }
   }
 }
