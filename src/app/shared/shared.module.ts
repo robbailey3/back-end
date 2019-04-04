@@ -1,3 +1,5 @@
+import { LocationService } from './services/location.service';
+import { ErrorLoggingService } from './services/error-logging.service';
 import { CheckboxComponent } from './forms/form-items/checkbox/checkbox.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -28,6 +30,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     CheckboxComponent,
     FormComponent
   ],
-  imports: [CommonModule, EditorModule, FormsModule, ReactiveFormsModule]
+  imports: [CommonModule, EditorModule, FormsModule, ReactiveFormsModule],
+  providers: [ErrorLoggingService, LocationService]
 })
 export class SharedModule {}

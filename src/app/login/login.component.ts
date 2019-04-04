@@ -1,3 +1,4 @@
+import { Debug } from './../global/debug';
 import { WysiwygQuestion } from './../shared/forms/questions/wysiwyg-question';
 import { CheckboxQuestion } from './../shared/forms/questions/checkbox-question';
 import { PasswordQuestion } from './../shared/forms/questions/password-question';
@@ -32,7 +33,7 @@ export class LoginComponent implements OnInit {
     })
   ];
   submitLoginForm(val: any) {
-    console.log(val);
+    Debug.log(val);
   }
 
   ngOnInit() {}

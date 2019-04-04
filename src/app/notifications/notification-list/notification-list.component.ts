@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NotificationService } from '../notification.service';
 import { Notification } from '../notification';
+import { Debug } from 'src/app/global/debug';
 
 @Component({
   selector: 'rb-notification-list',
@@ -21,6 +22,6 @@ export class NotificationListComponent implements OnInit {
   }
   clearNotifications() {
     this.service.clearNotifications();
-    console.log(this.service.notifications);
+    Debug.log(this.service.notifications);
   }
 }

@@ -1,3 +1,4 @@
+import { Debug } from './../../../../global/debug';
 import { Component, OnInit, Input, forwardRef } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
@@ -43,7 +44,7 @@ export class TinymceComponent implements ControlValueAccessor {
   registerOnTouched(fn: any): void {}
 
   change($event) {
-    console.log($event);
+    Debug.log($event);
     this.onChange(this.value);
   }
 }

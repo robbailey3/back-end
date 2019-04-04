@@ -1,3 +1,4 @@
+import { Debug } from './../debug';
 import { NavigationService } from './navigation.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -18,7 +19,7 @@ export class NavigationComponent implements OnInit {
   }
   addNavSubscription() {
     this.navService.$menuStatus.subscribe((response: boolean) => {
-      console.log(response);
+      Debug.log(response);
       this.menuActive = response;
     });
   }

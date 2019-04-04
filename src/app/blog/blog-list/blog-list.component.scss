@@ -1,5 +1,9 @@
 @import '../../../styles/components/colours';
 
+:host() {
+  padding: 16px;
+  display: block;
+}
 #blog-list {
   width: 100%;
   background: #fff;
