@@ -20,6 +20,9 @@ export class AuthService {
           if (res.response.status === 'ok') {
             if (res.response.results['JWT']) {
               this.jwt = res.response.results['JWT'];
+              if ('localStorage' in window) {
+                localStorage.setItem('jwt', this.jwt);
+              }
               resolve();
             }
           } else {
@@ -36,6 +39,7 @@ export class AuthService {
     return this.http.post<APIResponse>(this.loginURL, credentials);
   }
   tokenIsValid(): boolean {
+    this.jwt = this.jwt || localStorage.getItem('jwt') || undefined;
     if (this.jwt) {
       const decoded = jwtDecode(this.jwt);
       console.log(decoded['exp'] > new Date().getTime() / 1000);

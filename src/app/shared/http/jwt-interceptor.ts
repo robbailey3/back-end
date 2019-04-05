@@ -15,11 +15,11 @@ export class JWTInterceptor implements HttpInterceptor {
     request: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    request = request.clone({
+    const rqst = request.clone({
       setHeaders: {
         Authorization: `Bearer ${this.auth.jwt}`
       }
     });
-    return next.handle(request);
+    return next.handle(rqst);
   }
 }

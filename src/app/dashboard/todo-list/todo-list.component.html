@@ -3,39 +3,18 @@
     <div id="new-todo">
       <div class="form-group">
         <label for="todo" class="sr-only">Add a new To Do</label>
-        <input
-          type="text"
-          [(ngModel)]="newTodo"
-          name="todo"
-          id="todo"
-          min-length="3"
-          class="form-control"
-          (keyup.enter)="submitTodo()"
-        />
+        <input type="text" [(ngModel)]="newTodo" name="todo" id="todo" min-length="3" class="form-control" (keyup.enter)="submitTodo()" />
       </div>
-      <button
-        (click)="submitTodo()"
-        class="btn btn-primary"
-        [disabled]="!newTodo || newTodo.length < 2"
-      >
+      <button (click)="submitTodo()" class="btn btn-primary" [disabled]="!newTodo || newTodo.length < 2">
         Add
       </button>
     </div>
     <div id="todo-list" *ngIf="todos">
-      <ul [@listAnimation]="todos.length">
+      <ul>
         <li *ngFor="let todo of todos; index as i">
           <div class="form-group">
-            <rb-checkbox
-              [checked]="todo.status === '1'"
-              [label]="todo.todo"
-              [id]="'todo-' + todo.todoID"
-              [name]="'todo-' + todo.todoID"
-              (isChecked)="checkboxChecked($event, todo.todoID)"
-            ></rb-checkbox>
-            <button
-              class="delete-todo btn btn-ghost btn-round"
-              (click)="deleteTodo(todo)"
-            >
+            <rb-checkbox [checked]="todo.status === '1'" [label]="todo.todo" [id]="'todo-' + todo.todoID" [name]="'todo-' + todo.todoID" (isChecked)="checkboxChecked($event, todo.todoID)"></rb-checkbox>
+            <button class="delete-todo btn btn-ghost btn-round" (click)="deleteTodo(todo)">
               <i class="material-icons">
                 delete
               </i>
