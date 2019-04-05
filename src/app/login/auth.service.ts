@@ -1,10 +1,11 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { environment } from 'src/environments/environment.devlive';
-import { Observable } from 'rxjs';
-import { APIResponse } from '../shared/interfaces/api-response';
-import { Debug } from '../global/debug';
+import { Injectable } from '@angular/core';
 import * as jwtDecode from 'jwt-decode';
+import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment.devlive';
+
+import { APIResponse } from '../shared/interfaces/api-response';
+
 @Injectable({
   providedIn: 'root'
 })
