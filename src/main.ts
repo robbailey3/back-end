@@ -8,7 +8,9 @@ import { environment } from './environments/environment';
 if (environment.production) {
   enableProdMode();
 }
+console.log(environment);
 Debug.log({ APIUrl: environment.apiURL });
+
 platformBrowserDynamic()
   .bootstrapModule(AppModule)
   .catch(err => console.error(err));

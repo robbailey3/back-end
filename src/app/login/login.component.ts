@@ -1,14 +1,10 @@
-import { Debug } from './../global/debug';
-import { WysiwygQuestion } from './../shared/forms/questions/wysiwyg-question';
-import { CheckboxQuestion } from './../shared/forms/questions/checkbox-question';
 import { PasswordQuestion } from './../shared/forms/questions/password-question';
-import { RadioQuestion } from './../shared/forms/questions/radio-question';
 import { AuthService } from './auth.service';
 import { Component, OnInit } from '@angular/core';
 import { TextQuestion } from '../shared/forms/questions/text-question';
-import { RangeQuestion } from '../shared/forms/questions/range-question';
-import { DropdownQuestion } from '../shared/forms/questions/dropdown-question';
 import { Validators } from '@angular/forms';
+import { Debug } from '../global/debug';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'rb-login',
@@ -16,11 +12,11 @@ import { Validators } from '@angular/forms';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private router: Router) {}
   public questions = [
     new TextQuestion({
       label: 'E-mail Address',
-      key: 'email',
+      key: 'username',
       value: '',
       type: 'email',
       validators: [Validators.required, Validators.email]
@@ -33,7 +29,11 @@ export class LoginComponent implements OnInit {
     })
   ];
   submitLoginForm(val: any) {
-    Debug.log(val);
+    console.log('SUBMITTING FORM');
+    console.log(val);
+    this.authService.login(val).then(() => {
+      this.router.navigate(['/']);
+    });
   }
 
   ngOnInit() {}

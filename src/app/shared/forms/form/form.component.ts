@@ -11,7 +11,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 export class FormComponent implements OnInit {
   @Input() questions: QuestionBase<any>[] = [];
   @Input() buttonText: string;
-  @Output() submit: EventEmitter<any> = new EventEmitter();
+  @Output() formSubmit: EventEmitter<any> = new EventEmitter();
   form: FormGroup;
   payload = '';
   constructor(private service: QuestionControlService) {}
@@ -24,6 +24,6 @@ export class FormComponent implements OnInit {
   }
   onSubmit() {
     this.payload = JSON.stringify(this.form.value);
-    this.submit.emit(this.payload);
+    this.formSubmit.emit(this.payload);
   }
 }

@@ -4,11 +4,13 @@ import { BlogListComponent } from './blog-list/blog-list.component';
 import { BlogRootComponent } from './blog-root/blog-root.component';
 import { NewPostComponent } from './new-post/new-post.component';
 import { EditPostComponent } from './edit-post/edit-post.component';
+import { AuthGuard } from '../shared/guards/auth.guard';
 
 const routes: Routes = [
   {
     path: 'blog',
     component: BlogRootComponent,
+    canActivate: [AuthGuard],
     children: [
       {
         path: '',
