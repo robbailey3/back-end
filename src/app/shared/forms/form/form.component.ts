@@ -1,7 +1,8 @@
-import { QuestionControlService } from './../question-control.service';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { QuestionBase } from './../questions/question-base';
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+
+import { QuestionControlService } from '../question-control.service';
+import { QuestionBase } from '../questions/question-base';
 
 @Component({
   selector: 'rb-form',

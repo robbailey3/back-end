@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
+
+import { AuthGuard } from '../shared/guards/auth.guard';
 import { BlogListComponent } from './blog-list/blog-list.component';
 import { BlogRootComponent } from './blog-root/blog-root.component';
-import { NewPostComponent } from './new-post/new-post.component';
 import { EditPostComponent } from './edit-post/edit-post.component';
-import { AuthGuard } from '../shared/guards/auth.guard';
+import { NewPostComponent } from './new-post/new-post.component';
 
 const routes: Routes = [
   {

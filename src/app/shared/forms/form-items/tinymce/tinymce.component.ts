@@ -1,6 +1,7 @@
-import { Debug } from './../../../../global/debug';
-import { Component, OnInit, Input, forwardRef } from '@angular/core';
+import { Component, forwardRef, Input, OnInit } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+
+import { Debug } from '../../../../global/debug';
 
 declare var tinymce: any;
 

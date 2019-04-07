@@ -1,6 +1,7 @@
-import { AuthService } from './login/auth.service';
-import { NavigationService } from './global/navigation/navigation.service';
 import { Component, OnInit } from '@angular/core';
+
+import { NavigationService } from './global/navigation/navigation.service';
+import { AuthService } from './login/auth.service';
 
 @Component({
   selector: 'rb-root',

@@ -1,8 +1,10 @@
 import { AuthService } from 'src/app/login/auth.service';
-import { Debug } from './../debug';
-import { NavigationService } from './navigation.service';
+
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+
+import { Debug } from '../debug';
+import { NavigationService } from './navigation.service';
 
 @Component({
   selector: 'rb-navigation',

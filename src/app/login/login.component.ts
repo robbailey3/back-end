@@ -1,11 +1,12 @@
-import { PasswordQuestion } from './../shared/forms/questions/password-question';
-import { AuthService } from './auth.service';
 import { Component, OnInit } from '@angular/core';
-import { TextQuestion } from '../shared/forms/questions/text-question';
 import { Validators } from '@angular/forms';
-import { Debug } from '../global/debug';
 import { Router } from '@angular/router';
+
+import { Debug } from '../global/debug';
+import { PasswordQuestion } from '../shared/forms/questions/password-question';
+import { TextQuestion } from '../shared/forms/questions/text-question';
 import { UploadQuestion } from '../shared/forms/questions/upload-question';
+import { AuthService } from './auth.service';
 
 @Component({
   selector: 'rb-login',

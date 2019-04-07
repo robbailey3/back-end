@@ -1,5 +1,6 @@
-import { NavigationService } from './../navigation/navigation.service';
 import { Component, OnInit } from '@angular/core';
+
+import { NavigationService } from '../navigation/navigation.service';
 
 @Component({
   selector: 'rb-footer',

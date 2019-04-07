@@ -1,8 +1,9 @@
-import { listAnimation } from './../../shared/animations/src/list.animation';
-import { APIResponse } from './../../shared/interfaces/api-response';
 import { Component, OnInit } from '@angular/core';
-import { TodoService } from './todo.service';
+
+import { listAnimation } from '../../shared/animations/src/list.animation';
+import { APIResponse } from '../../shared/interfaces/api-response';
 import { Todo } from './todo';
+import { TodoService } from './todo.service';
 
 @Component({
   selector: 'rb-todo-list',

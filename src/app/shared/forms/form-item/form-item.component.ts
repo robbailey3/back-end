@@ -1,7 +1,8 @@
-import { FormGroup } from '@angular/forms';
-import { QuestionBase } from './../questions/question-base';
 import { Component, Input } from '@angular/core';
+import { FormGroup } from '@angular/forms';
+
 import { growIn } from '../../animations';
+import { QuestionBase } from '../questions/question-base';
 
 @Component({
   selector: 'rb-form-item',

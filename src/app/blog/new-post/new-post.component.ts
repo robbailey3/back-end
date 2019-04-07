@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
 import { TextQuestion } from 'src/app/shared/forms/questions/text-question';
-import { Validators } from '@angular/forms';
 import { WysiwygQuestion } from 'src/app/shared/forms/questions/wysiwyg-question';
+
+import { Component, OnInit } from '@angular/core';
+import { Validators } from '@angular/forms';
 
 @Component({
   selector: 'rb-new-post',

@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { NotificationService } from '../notification.service';
-import { Notification } from '../notification';
 import { Debug } from 'src/app/global/debug';
+
+import { Component, OnInit } from '@angular/core';
+
+import { Notification } from '../notification';
+import { NotificationService } from '../notification.service';
 
 @Component({
   selector: 'rb-notification-list',

@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { ErrorsService } from '../errors.service';
 import { APIResponse } from 'src/app/shared/interfaces/api-response';
+
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'rb-php-errors',
@@ -9,15 +9,7 @@ import { APIResponse } from 'src/app/shared/interfaces/api-response';
 })
 export class PhpErrorsComponent implements OnInit {
   errors: [];
-  constructor(private service: ErrorsService) {}
+  constructor() {}
 
-  ngOnInit() {
-    this.getData();
-  }
-
-  getData() {
-    this.service.getPHPErrors().subscribe((res: APIResponse) => {
-      this.errors = res.response.results as any;
-    });
-  }
+  ngOnInit() {}
 }

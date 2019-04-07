@@ -1,6 +1,8 @@
-import { Component, Input } from '@angular/core';
-import { Notification } from '../notification';
 import { fadeInOut } from 'src/app/shared/animations';
+
+import { Component, Input } from '@angular/core';
+
+import { Notification } from '../notification';
 
 @Component({
   selector: 'rb-notification',

@@ -1,4 +1,5 @@
 import { QuestionBase } from './question-base';
+
 export class UploadQuestion extends QuestionBase<string> {
   controlType = 'upload';
   handler: () => void;
