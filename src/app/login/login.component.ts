@@ -5,6 +5,7 @@ import { TextQuestion } from '../shared/forms/questions/text-question';
 import { Validators } from '@angular/forms';
 import { Debug } from '../global/debug';
 import { Router } from '@angular/router';
+import { UploadQuestion } from '../shared/forms/questions/upload-question';
 
 @Component({
   selector: 'rb-login',
@@ -29,8 +30,6 @@ export class LoginComponent implements OnInit {
     })
   ];
   submitLoginForm(val: any) {
-    console.log('SUBMITTING FORM');
-    console.log(val);
     this.authService.login(val).then(() => {
       this.router.navigate(['/']);
     });

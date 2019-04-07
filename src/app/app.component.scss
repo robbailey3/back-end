@@ -1,3 +1,5 @@
+@import '../styles/layout/grid';
+
 #main-content {
   width: 100%;
   margin: 0;
@@ -6,7 +8,9 @@
   overflow-y: auto;
 
   &.menu-active {
-    width: calc(100% - 225px);
-    margin-left: 225px;
+    @include breakpoint(md) {
+      margin-left: 225px;
+      width: calc(100% - 225px);
+    }
   }
 }

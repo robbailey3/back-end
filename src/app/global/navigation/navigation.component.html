@@ -1,9 +1,11 @@
 <div id="main-navigation" [class.active]="menuActive">
+  <a (click)="toggleMenuMobile()" id="menu-close"></a>
   <div id="navigation-header"></div>
   <nav>
     <ul>
       <li><a [routerLink]="['']">Dashboard</a></li>
-      <li class="has-submenu"><a (click)="toggleSubmenu('blog')">Blog</a>
+      <li class="has-submenu">
+        <a (click)="toggleSubmenu('blog')">Blog</a>
         <ul class="submenu" *ngIf="submenus.blog">
           <li><a [routerLink]="['blog']">View</a></li>
           <li><a [routerLink]="['blog/create']">New</a></li>
@@ -12,6 +14,7 @@
       <li><a [routerLink]="['photos']">Photos</a></li>
       <li><a [routerLink]="['errors']">Error Log</a></li>
       <li><a [routerLink]="['settings']">Settings</a></li>
+      <li><a (click)="logOut()">Log Out</a></li>
     </ul>
   </nav>
 </div>

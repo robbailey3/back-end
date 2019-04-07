@@ -1,5 +1,14 @@
-<header id="page-header" [class.menu-active]="menuActive">
+<header
+  id="page-header"
+  [class.menu-active]="menuActive"
+  class="flex-container"
+>
   <div id="nav-toggle-container">
-    <rb-button-hamburger (click)="menuButtonClickHandler()"></rb-button-hamburger>
+    <rb-button-hamburger
+      (click)="menuButtonClickHandler()"
+    ></rb-button-hamburger>
   </div>
+  <a class="btn btn-round btn-ghost" id="notification-toggle"
+    ><i class="material-icons">notifications</i></a
+  >
 </header>

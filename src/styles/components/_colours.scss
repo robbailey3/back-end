@@ -1,9 +1,10 @@
 $color-scheme: (
   'primary': rgb(67, 146, 241),
-  'secondary': rgb(39, 70, 144),
-  'accent': rgb(219, 84, 97),
+  'secondary': rgb(30, 91, 166),
+  'accent': rgb(244, 107, 93),
   'background': rgb(248, 253, 255),
-  'nearly-black': rgb(27, 27, 30)
+  'nearly-black': rgb(27, 27, 30),
+  'danger': #bb0020
 );
 
 @function color($name) {

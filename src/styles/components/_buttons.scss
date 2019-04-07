@@ -15,11 +15,11 @@
     background: darken(color(primary), 15%);
   }
   &.btn-danger {
-    background: #bb0020;
+    background: color(danger);
     color: #fff;
     &:hover,
     &:focus {
-      background: darken(#bb0020, 15%);
+      background: darken(color(danger), 15%);
     }
   }
   &.btn-ghost {

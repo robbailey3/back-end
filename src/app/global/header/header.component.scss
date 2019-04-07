@@ -1,10 +1,13 @@
 @import '../../../styles/components/colours';
+@import '../../../styles/layout/grid';
 
 #page-header {
   padding: 8px 16px;
-  background: linear-gradient(45deg,
-    color(primary),
-    lighten(color(primary), 5%));
+  background: linear-gradient(
+    15deg,
+    color(nearly-black),
+    lighten(color(nearly-black), 12%)
+  );
   box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.3);
   position: relative;
   margin: 0;
@@ -12,7 +15,23 @@
   transition: 0.4s cubic-bezier(0.8, 0, 0.2, 1);
 
   &.menu-active {
-    margin-left: 225px;
-    width: calc(100% - 225px);
+    @include breakpoint(md) {
+      margin-left: 225px;
+      width: calc(100% - 225px);
+    }
+  }
+  #notification-toggle {
+    margin-left: auto;
+    position: relative;
+    padding: 10px;
+    display: block;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: #f9f9f9;
+    &:hover,
+    &:focus {
+      background: rgba(#fff, 0.1);
+    }
   }
 }

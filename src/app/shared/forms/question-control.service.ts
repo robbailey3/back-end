@@ -11,13 +11,7 @@ export class QuestionControlService {
     const group: any = {};
 
     questions.forEach((question: QuestionBase<any>) => {
-      if (false) {
-        const formgroup = new FormGroup({});
-        question['options'].forEach((option: any) => {
-          formgroup.addControl(question.key, new FormControl(option.value));
-        });
-        group[question.key] = formgroup;
-      } else if (question.controlType === 'checkbox') {
+      if (question.controlType === 'checkbox') {
         const formgroup = new FormGroup({});
         question['options'].forEach((option: any) => {
           formgroup.addControl(
@@ -33,7 +27,6 @@ export class QuestionControlService {
         );
       }
     });
-    console.log(group);
     return new FormGroup(group);
   }
 }

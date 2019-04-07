@@ -21,7 +21,13 @@ export class AuthGuard implements CanActivate {
   }
   checkLogin(): boolean {
     if (!this.authService.tokenIsValid()) {
-      this.router.navigate(['/login']);
+      // If the current token is not valid, try getting a new one.
+      this.authService.refreshToken();
+      if (!this.authService.tokenIsValid()) {
+        // If it is still invalid, that means the token wasn't refreshed.
+        this.router.navigate(['login']);
+        return false;
+      }
       return false;
     }
     return true;

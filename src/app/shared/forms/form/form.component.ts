@@ -12,6 +12,7 @@ export class FormComponent implements OnInit {
   @Input() questions: QuestionBase<any>[] = [];
   @Input() buttonText: string;
   @Output() formSubmit: EventEmitter<any> = new EventEmitter();
+  @Output() FormDataSubmit: EventEmitter<any> = new EventEmitter();
   form: FormGroup;
   payload = '';
   constructor(private service: QuestionControlService) {}
@@ -25,5 +26,13 @@ export class FormComponent implements OnInit {
   onSubmit() {
     this.payload = JSON.stringify(this.form.value);
     this.formSubmit.emit(this.payload);
+    this.FormDataSubmit.emit(this.getFormData());
+  }
+  getFormData(): FormData {
+    const formData = new FormData();
+    this.questions.forEach(q => {
+      formData.append(q.key, this.form.get(q.key).value);
+    });
+    return formData;
   }
 }

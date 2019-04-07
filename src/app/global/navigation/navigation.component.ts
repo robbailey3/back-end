@@ -1,6 +1,8 @@
+import { AuthService } from 'src/app/login/auth.service';
 import { Debug } from './../debug';
 import { NavigationService } from './navigation.service';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'rb-navigation',
@@ -12,7 +14,11 @@ export class NavigationComponent implements OnInit {
   public submenus = {
     blog: false
   };
-  constructor(private navService: NavigationService) {}
+  constructor(
+    private navService: NavigationService,
+    private auth: AuthService,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     this.addNavSubscription();
@@ -27,5 +33,13 @@ export class NavigationComponent implements OnInit {
     if (this.submenus[submenu] !== undefined) {
       this.submenus[submenu] = !this.submenus[submenu];
     }
+  }
+  toggleMenuMobile() {
+    if (window.innerWidth < 768) {
+    }
+  }
+  logOut() {
+    this.auth.logout();
+    this.router.navigate(['login']);
   }
 }
