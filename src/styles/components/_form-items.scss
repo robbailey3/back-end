@@ -38,6 +38,10 @@
   font-family: inherit;
   font-size: 1em;
 
+  &[type=password] {
+    font-family: initial;
+  }
+
   &:focus {
     background: #fafafa;
     outline: none;

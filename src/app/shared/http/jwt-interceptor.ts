@@ -1,7 +1,12 @@
 import { Observable } from 'rxjs';
 import { AuthService } from 'src/app/login/auth.service';
 
-import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
+import {
+  HttpEvent,
+  HttpHandler,
+  HttpInterceptor,
+  HttpRequest
+} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable()
@@ -11,13 +16,15 @@ export class JWTInterceptor implements HttpInterceptor {
     request: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    if (this.auth.jwt) {
-      const rqst = request.clone({
-        setHeaders: {
-          Authorization: `Bearer ${this.auth.jwt}`
-        }
-      });
-      return next.handle(rqst);
+    if (request.url.startsWith('https://robbailey3.co.uk')) {
+      if (this.auth.jwt) {
+        const rqst = request.clone({
+          setHeaders: {
+            Authorization: `Bearer ${this.auth.jwt}`
+          }
+        });
+        return next.handle(rqst);
+      }
     }
     return next.handle(request);
   }

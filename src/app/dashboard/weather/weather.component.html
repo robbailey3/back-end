@@ -1,3 +1,11 @@
-<rb-card>
-  <p>Weather</p>
+<rb-card *ngIf="location" class="flex-container">
+  <div id="coords-container">
+    <span id="coords">{{ location.latitude | number: '2.2-2' }}&deg; {{ location.longitude | number: '2.2-2' }}&deg; </span>
+  </div>
+  <div id="location-name" *ngIf="locationName">
+    <h2>{{ locationName }}</h2>
+  </div>
+  <div id="weather" *ngIf="weather">
+    <pre>{{weather | json}}</pre>
+  </div>
 </rb-card>
