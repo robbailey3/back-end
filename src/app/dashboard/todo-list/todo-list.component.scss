@@ -1,37 +1,52 @@
 #new-todo {
   padding: 16px;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+
   .form-group {
     width: 80%;
+
     .form-control {
       border-radius: 5px 0 0 5px;
     }
   }
+
   .btn {
     width: 20%;
     border-radius: 0 5px 5px 0;
+    padding: 12px;
   }
 }
+
 #todo-list {
   padding: 16px;
+
   ul {
     padding: 0;
     margin: 0;
   }
+
   li {
     list-style: none;
     display: block;
     position: relative;
   }
+
   .form-group {
     position: relative;
+
     .delete-todo {
       position: absolute;
       right: 0;
       top: 0;
     }
+
     label {
       display: block;
       max-width: 75%;

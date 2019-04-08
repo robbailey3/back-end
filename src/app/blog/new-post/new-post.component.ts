@@ -3,6 +3,9 @@ import { WysiwygQuestion } from 'src/app/shared/forms/questions/wysiwyg-question
 
 import { Component, OnInit } from '@angular/core';
 import { Validators } from '@angular/forms';
+import { UploadQuestion } from 'src/app/shared/forms/questions/upload-question';
+import { BlogService } from '../blog.service';
+import { APIResponse } from 'src/app/shared/interfaces/api-response';
 
 @Component({
   selector: 'rb-new-post',
@@ -11,6 +14,12 @@ import { Validators } from '@angular/forms';
 })
 export class NewPostComponent implements OnInit {
   public questions = [
+    new UploadQuestion({
+      key: 'files',
+      multiple: false,
+      label: 'Header Image',
+      handler: () => {}
+    }),
     new TextQuestion({
       label: 'Post Title',
       key: 'title',
@@ -27,7 +36,12 @@ export class NewPostComponent implements OnInit {
       validators: [Validators.required]
     })
   ];
-  constructor() {}
+  constructor(private service: BlogService) {}
 
   ngOnInit() {}
+  onSubmit(data: FormData) {
+    this.service.createNewPost(data).subscribe((res: APIResponse) => {
+      console.log(res);
+    });
+  }
 }
