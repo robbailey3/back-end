@@ -1,3 +1,13 @@
+@import '../../../styles/layout/grid';
+
 #page-content {
   padding: 16px;
+}
+
+.dashboard-item {
+  margin: 8px 0.5%;
+
+  @include breakpoint(md) {
+    margin: 0 0.5%;
+  }
 }

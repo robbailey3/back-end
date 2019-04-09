@@ -1,14 +1,20 @@
+@import '../../../styles/layout/grid';
 @import '../../../styles/components/colours';
 
 #page-footer {
   margin: 0;
   width: 100%;
+  -webkit-transition: 0.4s cubic-bezier(0.8, 0, 0.2, 1);
+  -o-transition: 0.4s cubic-bezier(0.8, 0, 0.2, 1);
   transition: 0.4s cubic-bezier(0.8, 0, 0.2, 1);
   padding: 16px;
+  background: -o-linear-gradient(60deg, #aaa, #ddd);
   background: linear-gradient(30deg, #aaa, #ddd);
 
   &.menu-active {
-    width: calc(100% - 225px);
-    margin-left: 225px;
+    @include breakpoint(md) {
+      width: calc(100% - 225px);
+      margin-left: 225px;
+    }
   }
 }

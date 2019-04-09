@@ -2,11 +2,15 @@ import { QuestionBase } from './question-base';
 
 export class UploadQuestion extends QuestionBase<string> {
   controlType = 'upload';
-  handler: () => void;
   multiple: boolean;
+  showFilePreviews: boolean;
+  accept: string;
+  maxFileSize: number;
   constructor(options: {} = {}) {
     super(options);
-    this.handler = options['handler'] || function () {};
     this.multiple = options['multiple'] || false;
+    this.showFilePreviews = options['showFilePreviews'] || false;
+    this.accept = options['accept'] || '';
+    this.maxFileSize = options['maxFileSize'] || 2000000;
   }
 }

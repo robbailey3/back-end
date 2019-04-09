@@ -12,7 +12,7 @@ import { NavigationService } from './navigation.service';
   styleUrls: ['./navigation.component.scss']
 })
 export class NavigationComponent implements OnInit {
-  public menuActive = true;
+  public menuActive: boolean;
   public submenus = {
     blog: false
   };
@@ -23,6 +23,7 @@ export class NavigationComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.menuActive = window.innerWidth > 768;
     this.addNavSubscription();
   }
   addNavSubscription() {
@@ -38,6 +39,7 @@ export class NavigationComponent implements OnInit {
   }
   toggleMenuMobile() {
     if (window.innerWidth < 768) {
+      this.navService.buttonStatus(false);
     }
   }
   logOut() {

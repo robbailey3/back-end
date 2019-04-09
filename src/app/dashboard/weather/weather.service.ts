@@ -11,6 +11,8 @@ export class WeatherService {
   private readonly URL_BASE = `${environment.apiURL}/weather`;
   constructor(private http: HttpClient) {}
   getWeather(lat: number, lng: number): Observable<APIResponse> {
-    return this.http.get<APIResponse>(`${this.URL_BASE}?lat=${lat}&lng=${lng}`);
+    return this.http.get<APIResponse>(
+      `${this.URL_BASE}?lat=${lat}&lng=${lng}&units=uk2`
+    );
   }
 }

@@ -5,7 +5,28 @@
   <div id="location-name" *ngIf="locationName">
     <h2>{{ locationName }}</h2>
   </div>
-  <div id="weather" *ngIf="weather">
-    <pre>{{weather | json}}</pre>
+  <div id="weather" *ngIf="weather" class="flex-container">
+    <div class="col-lg-4 current-weather">
+      <div class="current-temp">
+        <p class="temp">{{ weather.currently.temperature | number: '1.0-0' }}<span class="units">&deg;C</span></p>
+      </div>
+      <div class="current-description">
+        <p>{{ weather.currently.summary }}</p>
+      </div>
+    </div>
+
+    <div class="col-lg-8 flex-container forecast">
+      <div class="forecast-day" *ngFor="let day of weather.daily.data.slice(1, 6)">
+        <p>{{ day.time * 1000 | date: 'EEEE' }}</p>
+        <p><span>Max: </span>{{ day.temperatureMax }}&deg;C</p>
+        <p><span>Min: </span>{{ day.temperatureMin }}&deg;C</p>
+      </div>
+    </div>
+    <div id="attributation">
+      <span>Powered by DarkSky Weather</span>
+    </div>
+  </div>
+  <div id="loader" *ngIf="!weather || !location">
+    <rb-loader></rb-loader>
   </div>
 </rb-card>

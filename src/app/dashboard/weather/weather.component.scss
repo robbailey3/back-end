@@ -1,20 +1,87 @@
+@import '../../../styles/layout/grid';
+
 :host() {
   display: block;
 }
 
 rb-card {
-  padding: 16px;
+  padding: 4px 16px;
 }
 
 #coords-container,
 #location-name,
 #location-name h2 {
   width: 100%;
-  text-align: right;
-  font-size: 0.8em;
-  color: #999;
+  font-size: 1em;
+  color: #666;
+  font-variant: small-caps;
+  margin: 0;
+  letter-spacing: 1px;
+
+  @include breakpoint(md) {
+    text-align: right;
+  }
 }
 
-pre {
-  white-space: pre-wrap;
+#coords {
+  font-size: 0.8em;
+  letter-spacing: 1.3px;
+}
+
+#weather {
+  width: 100%;
+
+  .current-weather {
+
+    .current-temp,
+    .current-description {
+      @include breakpoint(md) {
+        text-align: center;
+      }
+    }
+
+    .temp {
+      font-size: 42px;
+      color: #666;
+      margin: 0;
+      position: relative;
+
+      .units {
+        font-size: 18px;
+        position: relative;
+        top: -15px;
+      }
+    }
+
+    .current-description {
+      p {
+        margin: 0;
+      }
+    }
+  }
+
+  .forecast {
+    display: none;
+
+    @include breakpoint(md) {
+      display: flex;
+    }
+
+    .forecast-day {
+      text-align: center;
+      width: 100%;
+
+      @include breakpoint(md) {
+        width: (100% / 5);
+      }
+    }
+  }
+}
+
+#attributation {
+  font-size: 0.5em;
+  text-align: right;
+  color: #999;
+  width: 100%;
+  user-select: none;
 }

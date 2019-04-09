@@ -3,9 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EditorModule } from '@tinymce/tinymce-angular';
 
-import {
-    HamburgerButtonComponent
-} from './components/buttons/hamburgerButton/hamburgerButton.component';
+import { HamburgerButtonComponent } from './components/buttons/hamburgerButton/hamburgerButton.component';
 import { CardComponent } from './components/card/card.component';
 import { FlexContainerComponent } from './components/flex-container/flex-container.component';
 import { FormItemComponent } from './forms/form-item/form-item.component';
@@ -14,6 +12,9 @@ import { TinymceComponent } from './forms/form-items/tinymce/tinymce.component';
 import { FormComponent } from './forms/form/form.component';
 import { ErrorLoggingService } from './services/error-logging.service';
 import { LocationService } from './services/location.service';
+import { LoaderComponent } from './components/loader/loader.component';
+import { UploadComponent } from './forms/form-items/upload/upload.component';
+import { ChipsComponent } from './forms/form-items/chips/chips.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,10 @@ import { LocationService } from './services/location.service';
     TinymceComponent,
     CheckboxComponent,
     FormComponent,
-    FormItemComponent
+    FormItemComponent,
+    LoaderComponent,
+    UploadComponent,
+    ChipsComponent
   ],
   exports: [
     CardComponent,
@@ -31,7 +35,8 @@ import { LocationService } from './services/location.service';
     HamburgerButtonComponent,
     TinymceComponent,
     CheckboxComponent,
-    FormComponent
+    FormComponent,
+    LoaderComponent
   ],
   imports: [CommonModule, EditorModule, FormsModule, ReactiveFormsModule],
   providers: [ErrorLoggingService, LocationService]

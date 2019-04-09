@@ -37,9 +37,14 @@
   transition: .3s;
   font-family: inherit;
   font-size: 1em;
+  background: #fff;
 
   &[type=password] {
     font-family: initial;
+  }
+
+  &[type=file] {
+    font-size: 0.8em;
   }
 
   &:focus {

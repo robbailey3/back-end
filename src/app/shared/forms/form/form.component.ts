@@ -24,15 +24,28 @@ export class FormComponent implements OnInit {
     }
     this.form = this.service.toFormGroup(this.questions);
   }
+  /**
+   * @description
+   */
   onSubmit() {
     this.payload = JSON.stringify(this.form.value);
     this.formSubmit.emit(this.payload);
     this.FormDataSubmit.emit(this.getFormData());
   }
+  /**
+   * @description Gets FormData from the form inputs.
+   */
   getFormData(): FormData {
     const formData = new FormData();
-    this.questions.forEach(q => {
-      formData.append(q.key, this.form.get(q.key).value);
+    this.questions.forEach((q: QuestionBase<any>) => {
+      if (q.controlType === 'upload') {
+        const files = this.form.get(q.key).value as FileList;
+        for (let i = 0; i < files.length; i += 1) {
+          formData.append(q.key, files.item(i));
+        }
+      } else {
+        formData.append(q.key, this.form.get(q.key).value);
+      }
     });
     return formData;
   }

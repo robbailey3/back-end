@@ -3,111 +3,43 @@
 
   <div [ngSwitch]="question.controlType" class="form-item">
     <!-- Standard text input field -->
-    <input
-      *ngSwitchCase="'textbox'"
-      [formControlName]="question.key"
-      [id]="question.key"
-      [type]="question['type']"
-      class="form-control"
-      [value]="question.value"
-    />
+    <input *ngSwitchCase="'textbox'" [formControlName]="question.key" [id]="question.key" [type]="question['type']" class="form-control" [value]="question.value" />
     <!-- Range input field -->
-    <input
-      type=" range"
-      [name]="question.key"
-      [id]="question.key"
-      [min]="question['min']"
-      [max]="question['max']"
-      [step]="question['step']"
-      *ngSwitchCase="'range'"
-      class="form-control"
-      [formControlName]="question.key"
-    />
+    <input type=" range" [name]="question.key" [id]="question.key" [min]="question['min']" [max]="question['max']" [step]="question['step']" *ngSwitchCase="'range'" class="form-control" [formControlName]="question.key" />
     <!-- Password input field -->
-    <input
-      type="password"
-      [name]="question.key"
-      [id]="question.key"
-      class="form-control"
-      *ngSwitchCase="'password'"
-      [formControlName]="question.key"
-    />
+    <input type="password" [name]="question.key" [id]="question.key" class="form-control" *ngSwitchCase="'password'" [formControlName]="question.key" />
     <!-- Select item input -->
-    <select
-      [id]="question.key"
-      *ngSwitchCase="'dropdown'"
-      [formControlName]="question.key"
-      [multiple]="question['multiple']"
-      class="form-control"
-    >
+    <select [id]="question.key" *ngSwitchCase="'dropdown'" [formControlName]="question.key" [multiple]="question['multiple']" class="form-control">
       <option *ngFor="let opt of question['options']" [value]="opt">{{
         opt
       }}</option>
     </select>
     <!-- wysiwyg item input -->
-    <rb-tinymce
-      *ngSwitchCase="'wysiwyg'"
-      [value]="question.value"
-      [formControlName]="question.key"
-    ></rb-tinymce>
+    <rb-tinymce *ngSwitchCase="'wysiwyg'" [value]="question.value" [formControlName]="question.key"></rb-tinymce>
     <!-- Radio item input -->
     <fieldset *ngSwitchCase="'radio'">
       <legend>{{ question.label }}</legend>
-      <div
-        class="form-group"
-        *ngFor="let option of question['options']; let i = index"
-      >
+      <div class="form-group" *ngFor="let option of question['options']; let i = index">
         <label>
-          <input
-            type="radio"
-            [name]="question.key"
-            id="{{ question.key }}-{{ option.key }}"
-            class="form-control"
-            [value]="option.value"
-            [formControlName]="question.key"
-          />
-          {{ option.key }}</label
-        >
+          <input type="radio" [name]="question.key" id="{{ question.key }}-{{ option.key }}" class="form-control" [value]="option.value" [formControlName]="question.key" />
+          {{ option.key }}</label>
       </div>
     </fieldset>
     <!-- Checkbox item input -->
-    <fieldset
-      *ngSwitchCase="'checkbox'"
-      [formGroup]="form.controls[question.key]"
-    >
+    <fieldset *ngSwitchCase="'checkbox'" [formGroup]="form.controls[question.key]">
       <legend>{{ question.label }}</legend>
-      <div
-        class="form-group"
-        *ngFor="let option of question['options']; let i = index"
-      >
+      <div class="form-group" *ngFor="let option of question['options']; let i = index">
         <label>
-          <input
-            type="checkbox"
-            class="form-control"
-            [value]="option.value"
-            [formControlName]="option.key"
-          />
-          {{ option.key }}</label
-        >
+          <input type="checkbox" class="form-control" [value]="option.value" [formControlName]="option.key" />
+          {{ option.key }}</label>
       </div>
     </fieldset>
     <!-- Upload item input -->
-    <input
-      type="file"
-      class="form-control"
-      [formControlName]="question.key"
-      [name]="question.key"
-      [id]="question.key"
-      [multiple]="question['multiple']"
-      *ngSwitchCase="'upload'"
-    />
+    <rb-upload *ngSwitchCase="'upload'" [formControlName]="question.key" [name]="question.key" [id]="question.key" [multiple]="question.multiple" [showFilePreviews]="question.showFilePreviews" [accept]="question.accept" [maxFileSize]="question.maxFileSize"></rb-upload>
   </div>
 
   <div class="error-messages" *ngIf="isInvalid" [@growIn]>
-    <div
-      class="error"
-      *ngFor="let error of (form.controls[question.key].errors | keyvalue)"
-    >
+    <div class="error" *ngFor="let error of (form.controls[question.key].errors | keyvalue)">
       <p *ngIf="error.key === 'required'">{{ question.label }} is required</p>
       <p *ngIf="error.key === 'email'">Please enter a valid email</p>
       <p *ngIf="error.key === 'minlength'">

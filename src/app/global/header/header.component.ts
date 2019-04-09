@@ -8,12 +8,20 @@ import { NavigationService } from '../navigation/navigation.service';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  public menuActive = true;
+  public menuActive: boolean;
   constructor(private navService: NavigationService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.menuActive = window.innerWidth > 768;
+    this.subscribeToButton();
+  }
   menuButtonClickHandler() {
     this.menuActive = !this.menuActive;
     this.navService.buttonStatus(this.menuActive);
+  }
+  subscribeToButton() {
+    this.navService.$menuStatus.subscribe(status => {
+      this.menuActive = status;
+    });
   }
 }

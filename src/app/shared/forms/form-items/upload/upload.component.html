@@ -1,0 +1,9 @@
+<input type="file" [name]="name" [id]="id" class="form-control" [(ngModel)]="value" (change)="change($event)" [multiple]="multiple" [accept]="accept">
+<div id="loader" *ngIf="showFilePreviews && previewsLoading">
+  <rb-loader></rb-loader>
+</div>
+<div id="upload-preview" *ngIf="showFilePreviews && previewsLoaded" class="flex-container">
+  <rb-card class="img-preview-container" *ngFor="let img of imagePreviews">
+    <img class="img-preview" [src]="img.src" alt="">
+  </rb-card>
+</div>

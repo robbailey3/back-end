@@ -18,7 +18,8 @@ export class NewPostComponent implements OnInit {
       key: 'files',
       multiple: false,
       label: 'Header Image',
-      handler: () => {}
+      showFilePreviews: true,
+      accept: 'image/*'
     }),
     new TextQuestion({
       label: 'Post Title',

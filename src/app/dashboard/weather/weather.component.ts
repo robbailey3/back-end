@@ -32,7 +32,6 @@ export class WeatherComponent implements OnInit {
         this.location = JSON.parse(localStorage.getItem('last_known_location'));
       }
     }
-    console.log(this.location);
   }
   getLocation(): void {
     this.locationService
@@ -69,7 +68,8 @@ export class WeatherComponent implements OnInit {
     this.weatherService
       .getWeather(this.location.latitude, this.location.longitude)
       .subscribe((res: APIResponse) => {
-        this.weather = res.response.results as Weather;
+        this.weather = res.response.results[0] as Weather;
+        Debug.log(this.weather);
       });
   }
 }
