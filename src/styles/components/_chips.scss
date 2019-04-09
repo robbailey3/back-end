@@ -1,0 +1,21 @@
+.chip {
+  display: inline-block;
+  padding: 2px 8px;
+  background: #cfcfcf;
+  color: #606060;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: .9em;
+  margin-right: 6px;
+
+  button.btn-ghost {
+    padding: 2px;
+    margin-left: 4px;
+  }
+
+  i.material-icons {
+    font-size: 18px;
+  }
+}

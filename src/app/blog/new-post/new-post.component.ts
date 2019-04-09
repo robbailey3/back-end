@@ -6,6 +6,7 @@ import { Validators } from '@angular/forms';
 import { UploadQuestion } from 'src/app/shared/forms/questions/upload-question';
 import { BlogService } from '../blog.service';
 import { APIResponse } from 'src/app/shared/interfaces/api-response';
+import { ChipsQuestion } from 'src/app/shared/forms/questions/chips-question';
 
 @Component({
   selector: 'rb-new-post',
@@ -34,6 +35,12 @@ export class NewPostComponent implements OnInit {
     new WysiwygQuestion({
       label: 'Post Content',
       key: 'content',
+      validators: [Validators.required]
+    }),
+    new ChipsQuestion({
+      label: 'Tags',
+      key: 'categories',
+      removable: true,
       validators: [Validators.required]
     })
   ];

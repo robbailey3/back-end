@@ -15,7 +15,7 @@
       }}</option>
     </select>
     <!-- wysiwyg item input -->
-    <rb-tinymce *ngSwitchCase="'wysiwyg'" [value]="question.value" [formControlName]="question.key"></rb-tinymce>
+    <rb-tinymce *ngSwitchCase="'wysiwyg'" [value]="question.value" [formControlName]="question.key" [required]="question.required"></rb-tinymce>
     <!-- Radio item input -->
     <fieldset *ngSwitchCase="'radio'">
       <legend>{{ question.label }}</legend>
@@ -36,6 +36,10 @@
     </fieldset>
     <!-- Upload item input -->
     <rb-upload *ngSwitchCase="'upload'" [formControlName]="question.key" [name]="question.key" [id]="question.key" [multiple]="question.multiple" [showFilePreviews]="question.showFilePreviews" [accept]="question.accept" [maxFileSize]="question.maxFileSize"></rb-upload>
+
+    <!-- Chips item input -->
+    <rb-chips *ngSwitchCase="'chips'" [formControlName]="question.key" [name]="question.key" [id]="question.key" [removable]="question.removable" [value]="question.value" [required]="question.required">
+    </rb-chips>
   </div>
 
   <div class="error-messages" *ngIf="isInvalid" [@growIn]>

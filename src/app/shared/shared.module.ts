@@ -33,7 +33,6 @@ import { ChipsComponent } from './forms/form-items/chips/chips.component';
     CardComponent,
     FlexContainerComponent,
     HamburgerButtonComponent,
-    TinymceComponent,
     CheckboxComponent,
     FormComponent,
     LoaderComponent

@@ -2,6 +2,7 @@
 * {
   box-sizing: border-box;
 }
+
 html,
 body {
   padding: 0;
@@ -15,5 +16,6 @@ body {
 @import './styles/components/typography';
 @import './styles/components/form-items';
 @import './styles/components/buttons';
+@import './styles/components/chips';
 @import './styles/accessibility';
 @import './styles/layout/grid';

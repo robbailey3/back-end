@@ -1,0 +1,28 @@
+#chips-item-wrapper {
+  &:focus-within {
+    outline: auto 5px -webkit-focus-ring-color;
+  }
+
+  input {
+    background: transparent;
+    border: none;
+
+    &:focus {
+      outline: none;
+    }
+  }
+}
+
+:host() {
+  &.ng-valid {
+    #chips-item-wrapper {
+      border-left: 5px solid #00BB20;
+    }
+  }
+
+  &.ng-invalid.ng-touched {
+    #chips-item-wrapper {
+      border-left: 5px solid #BB0020;
+    }
+  }
+}
