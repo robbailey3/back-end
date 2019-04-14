@@ -14,7 +14,7 @@
     <tbody>
       <tr *ngFor="let post of posts">
         <td>{{ post.id }}</td>
-        <td>{{ post.title }}</td>
+        <td [innerHTML]="post.title"></td>
         <td>{{ post.date | date: 'dd/MM/yyy HH:mm' }}</td>
         <td>{{ post.categories }}</td>
         <td>{{ post.status === '1' ? 'Published' : 'Draft' }}</td>
@@ -22,6 +22,7 @@
           <div class="btn-group post-actions">
             <button class="btn" *ngIf="post.status === '0'">Publish</button>
             <button class="btn" *ngIf="post.status === '1'">Unpublish</button>
+            <button class="btn" [routerLink]="['edit', post.id]">Edit</button>
             <button class="btn btn-secondary">View</button>
             <button class="btn btn-danger">Delete</button>
           </div>

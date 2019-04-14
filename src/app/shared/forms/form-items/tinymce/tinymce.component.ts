@@ -1,6 +1,10 @@
+import { APIResponse } from 'src/app/shared/interfaces/api-response';
+
 import { Component, forwardRef, Input, OnInit } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
+import { environment } from '../../../../../environments/environment';
+import { BlogService } from '../../../../blog/blog.service';
 import { Debug } from '../../../../global/debug';
 
 declare var tinymce: any;
@@ -31,11 +35,22 @@ export class TinymceComponent implements ControlValueAccessor {
       | link image media codesample | alignleft aligncenter
       alignright alignjustify  | numlist bullist outdent indent | removeformat`,
     image_caption: true,
-    images_upload_url: 'postAcceptor.php',
+    images_upload_handler: (blobInfo, success, error) => {
+      const formData = new FormData();
+      formData.append('file', blobInfo.blob(), blobInfo.filename());
+      this.blogService.postBlogImage(formData).subscribe(
+        (res: APIResponse) => {
+          success(res.response.results['uploads'][0]);
+        },
+        (err: any) => {
+          error(err);
+        }
+      );
+    },
     automatic_uploads: true,
     file_picker_types: 'image'
   };
-  constructor() {}
+  constructor(private blogService: BlogService) {}
   writeValue(value: string): void {
     this.value = value;
   }

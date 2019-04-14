@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { LocationService } from 'src/app/shared/services/location.service';
-import { WeatherService } from './weather.service';
 import { Debug } from 'src/app/global/debug';
 import { APIResponse } from 'src/app/shared/interfaces/api-response';
+import { LocationService } from 'src/app/shared/services/location.service';
+
+import { Component, OnInit } from '@angular/core';
+
 import { Weather } from './weather';
+import { WeatherService } from './weather.service';
 
 @Component({
   selector: 'rb-weather',

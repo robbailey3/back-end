@@ -41,9 +41,12 @@ export class BlogService {
     return this.http.post<APIResponse>(`${this.URL_BASE}`, post);
   }
   updateExistingPost(id: number, data: any): Observable<APIResponse> {
-    return this.http.put<APIResponse>(`${this.URL_BASE}/${id}`, data);
+    return this.http.post<APIResponse>(`${this.URL_BASE}/${id}`, data);
   }
   deletePost(id: number): Observable<APIResponse> {
     return this.http.delete<APIResponse>(`${this.URL_BASE}/${id}`);
+  }
+  postBlogImage(img: FormData): Observable<APIResponse> {
+    return this.http.post<APIResponse>(`${environment.apiURL}/blog/image`, img);
   }
 }

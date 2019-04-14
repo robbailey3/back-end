@@ -1,6 +1,7 @@
-import { Component, Input, forwardRef } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { Debug } from 'src/app/global/debug';
+
+import { Component, forwardRef, Input } from '@angular/core';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
   selector: 'rb-upload',
@@ -77,8 +78,6 @@ export class UploadComponent implements ControlValueAccessor {
   }
   validateFiles(files: FileList): boolean {
     for (let i = 0; i < files.length; i += 1) {
-      console.log(files.item(i).size);
-      console.log(this.maxFileSize);
       if (files.item(i).size > this.maxFileSize) {
         return false;
       }

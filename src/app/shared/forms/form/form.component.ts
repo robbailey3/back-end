@@ -1,9 +1,10 @@
+import { Debug } from 'src/app/global/debug';
+
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
 import { QuestionControlService } from '../question-control.service';
 import { QuestionBase } from '../questions/question-base';
-import { Debug } from 'src/app/global/debug';
 
 @Component({
   selector: 'rb-form',
@@ -41,7 +42,6 @@ export class FormComponent implements OnInit {
     this.questions.forEach((q: QuestionBase<any>) => {
       if (q.controlType === 'upload') {
         const files = this.form.get(q.key).value as FileList;
-        Debug.log(files);
         if (files !== null && files.length > 0) {
           for (let i = 0; i < files.length; i += 1) {
             formData.append(q.key, files.item(i));

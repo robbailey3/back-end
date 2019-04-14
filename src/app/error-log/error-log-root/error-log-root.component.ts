@@ -1,7 +1,9 @@
-import { APIResponse } from 'src/app/shared/interfaces/api-response';
-import { ErrorsService } from './../errors.service';
-import { Component, OnInit } from '@angular/core';
 import { Debug } from 'src/app/global/debug';
+import { APIResponse } from 'src/app/shared/interfaces/api-response';
+
+import { Component, OnInit } from '@angular/core';
+
+import { ErrorsService } from '../errors.service';
 
 @Component({
   selector: 'rb-error-log-root',

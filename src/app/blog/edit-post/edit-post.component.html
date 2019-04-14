@@ -1,3 +1,10 @@
-<p>
-  edit-post works!
-</p>
+<div id="edit-post-form" *ngIf="questions">
+  <div id="header-image" *ngIf="post.image">
+    <img src="{{ post.image }}" alt="" />
+  </div>
+  <rb-form
+    [questions]="questions"
+    buttonText="Save"
+    (FormDataSubmit)="onSubmit($event)"
+  ></rb-form>
+</div>

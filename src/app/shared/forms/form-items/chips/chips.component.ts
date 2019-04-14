@@ -1,13 +1,10 @@
-import { Component, Input, forwardRef, OnInit } from '@angular/core';
-import {
-  ControlValueAccessor,
-  NG_VALUE_ACCESSOR,
-  NG_VALIDATORS,
-  Validator,
-  AbstractControl,
-  RequiredValidator
-} from '@angular/forms';
 import { Debug } from 'src/app/global/debug';
+
+import { Component, forwardRef, Input, OnInit } from '@angular/core';
+import {
+    AbstractControl, ControlValueAccessor, NG_VALIDATORS, NG_VALUE_ACCESSOR, RequiredValidator,
+    Validator
+} from '@angular/forms';
 
 @Component({
   selector: 'rb-chips',
