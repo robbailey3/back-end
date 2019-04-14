@@ -1,3 +1,4 @@
+import { APIResponse } from 'src/app/shared/interfaces/api-response';
 import { Component, OnInit } from '@angular/core';
 
 import { BlogService } from '../blog.service';
@@ -18,6 +19,13 @@ export class BlogListComponent implements OnInit {
   getBlogPosts() {
     this.service.getAll().subscribe((res: any) => {
       this.posts = res.response.results as Post[];
+    });
+  }
+  deletePost(id: number) {
+    this.service.deletePost(id).subscribe((res: APIResponse) => {
+      if (res.response.status === 'ok') {
+        this.getBlogPosts();
+      }
     });
   }
 }

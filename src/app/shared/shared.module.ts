@@ -17,6 +17,7 @@ import { UploadComponent } from './forms/form-items/upload/upload.component';
 import { FormComponent } from './forms/form/form.component';
 import { ErrorLoggingService } from './services/error-logging.service';
 import { LocationService } from './services/location.service';
+import { DialogComponent } from './dialog/dialog.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { LocationService } from './services/location.service';
     FormItemComponent,
     LoaderComponent,
     UploadComponent,
-    ChipsComponent
+    ChipsComponent,
+    DialogComponent
   ],
   exports: [
     CardComponent,

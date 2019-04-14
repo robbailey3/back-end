@@ -3,7 +3,6 @@ import { APIResponse } from 'src/app/shared/interfaces/api-response';
 import { Component, forwardRef, Input, OnInit } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
-import { environment } from '../../../../../environments/environment';
 import { BlogService } from '../../../../blog/blog.service';
 import { Debug } from '../../../../global/debug';
 
@@ -30,11 +29,15 @@ export class TinymceComponent implements ControlValueAccessor {
     plugins: `print preview searchreplace autolink directionality emoticons
       visualblocks visualchars fullscreen image link template codesample table
     charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists
-      wordcount imagetools textpattern help`,
+      wordcount imagetools textpattern help code`,
     toolbar: `formatselect | bold italic strikethrough underline
       | link image media codesample | alignleft aligncenter
-      alignright alignjustify  | numlist bullist outdent indent | removeformat`,
+      alignright alignjustify  | numlist bullist outdent indent | removeformat code`,
     image_caption: true,
+    style_formats: [
+      { title: 'code', block: 'pre', inline: 'code', classes: 'prettyprint' }
+    ],
+    style_formats_merge: true,
     images_upload_handler: (blobInfo, success, error) => {
       const formData = new FormData();
       formData.append('file', blobInfo.blob(), blobInfo.filename());
@@ -60,7 +63,6 @@ export class TinymceComponent implements ControlValueAccessor {
   registerOnTouched(fn: any): void {}
 
   change($event) {
-    Debug.log($event);
     this.onChange(this.value);
   }
 }
