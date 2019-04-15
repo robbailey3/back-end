@@ -77,7 +77,6 @@ export class EditPostComponent implements OnInit {
         value: this.post.categories
       })
     ];
-    console.log(this.questions);
   }
   onSubmit(data: FormData) {
     this.service

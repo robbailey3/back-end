@@ -1,4 +1,18 @@
 <div id="chips-item-wrapper" class="flex-container form-control" tabindex="0">
-  <span class="chip" *ngFor="let chip of chips; let i = index;">{{ chip }} <button *ngIf="removable" class="btn btn-ghost btn-round" (click)="removeChip(i)"><i class="material-icons">close</i></button></span>
-  <input type="text" (keyup.enter)="addValue($event)" [(ngModel)]="inputValue" placeholder="Add an item...">
+  <span class="chip" *ngFor="let chip of chips; let i = index"
+    >{{ chip }}
+    <button
+      *ngIf="removable"
+      class="btn btn-ghost btn-round"
+      (click)="removeChip(i)"
+    >
+      <i class="material-icons">close</i>
+    </button></span
+  >
+  <input
+    type="text"
+    (keyup.enter)="addValue()"
+    [(ngModel)]="inputValue"
+    placeholder="Add an item..."
+  />
 </div>

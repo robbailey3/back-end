@@ -9,6 +9,8 @@ import { Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { BlogService } from '../blog.service';
+import { NotificationService } from 'src/app/notifications/notification.service';
+import { Notification } from 'src/app/notifications/notification';
 
 @Component({
   selector: 'rb-new-post',
@@ -46,12 +48,19 @@ export class NewPostComponent implements OnInit {
       validators: [Validators.required]
     })
   ];
-  constructor(private service: BlogService, private router: Router) {}
+  constructor(
+    private service: BlogService,
+    private router: Router,
+    private notification: NotificationService
+  ) {}
 
   ngOnInit() {}
   onSubmit(data: FormData) {
     this.service.createNewPost(data).subscribe((res: APIResponse) => {
       if (res.response.status === 'ok') {
+        this.notification.addNotification(
+          new Notification('Post successfully created', 'success', true)
+        );
         this.router.navigate(['/blog']);
       }
     });

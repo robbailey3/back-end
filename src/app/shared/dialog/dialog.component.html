@@ -1,3 +1,12 @@
-<p>
-  dialog works!
-</p>
+<div id="dialog-component" *ngIf="open">
+  <div id="modal-overlay"></div>
+
+  <div class="dialog">
+    <h1 class="dialog-title">{{ options.title }}</h1>
+    <p class="dialog-title">{{ options.content }}</p>
+    <div class="btn-group">
+      <button (click)="confirm()" class="btn ">{{ options.confirmButtonTxt }}</button>
+      <button (click)="decline()" class="btn btn-danger">{{ options.declineButtonTxt }}</button>
+    </div>
+  </div>
+</div>

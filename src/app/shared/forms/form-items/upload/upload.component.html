@@ -1,4 +1,4 @@
-<input type="file" [name]="name" [id]="id" class="form-control" [(ngModel)]="value" (change)="change($event)" [multiple]="multiple" [accept]="accept">
+<input type="file" [name]="name" [id]="id" class="form-control" (change)="change($event)" [multiple]="multiple" [accept]="accept">
 <div id="loader" *ngIf="showFilePreviews && previewsLoading">
   <rb-loader></rb-loader>
 </div>

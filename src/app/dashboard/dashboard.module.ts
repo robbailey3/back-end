@@ -8,10 +8,11 @@ import { DashboardRootComponent } from './dashboard-root/dashboard-root.componen
 import { TodoListComponent } from './todo-list/todo-list.component';
 import { TodoService } from './todo-list/todo.service';
 import { WeatherComponent } from './weather/weather.component';
+import { DialogService } from '../shared/dialog/dialog.service';
 
 @NgModule({
   declarations: [TodoListComponent, DashboardRootComponent, WeatherComponent],
   imports: [CommonModule, SharedModule, FormsModule, NotificationsModule],
-  providers: [TodoService]
+  providers: [TodoService, DialogService]
 })
 export class DashboardModule {}
