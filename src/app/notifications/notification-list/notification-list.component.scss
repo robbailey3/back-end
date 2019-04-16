@@ -1,0 +1,35 @@
+div#notifications-list {
+  position: fixed;
+  right: -225px;
+  top: 60px;
+  width: 225px;
+  background: #1c1c1c;
+  z-index: 99;
+  height: 100%;
+  color: #fbfbfb;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.4);
+  transition: .3s ease-in-out;
+
+  &.active {
+    right: 0px;
+  }
+
+  ul {
+    padding: 0;
+    margin: 0;
+  }
+
+  li {
+    display: block;
+    padding: 16px;
+  }
+
+  .timestamp {
+    font-size: 0.8em;
+    color: #f0f0f0;
+  }
+
+  p {
+    margin: 0;
+  }
+}

@@ -15,7 +15,6 @@ const routes: Routes = [
     component: DashboardRootComponent,
     canActivate: [AuthGuard]
   },
-  { path: 'photos', component: PhotosRootComponent, canActivate: [AuthGuard] },
   { path: 'settings', component: SettingsComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent }
 ];

@@ -43,6 +43,8 @@
       padding: 0;
 
       &.submenu {
+        transform-origin: top;
+
         a {
           padding-left: 32px;
         }
@@ -56,8 +58,8 @@
     a {
       display: block;
       color: #555;
-      font-size: 20px;
       padding: 8px 16px;
+      font-size: 1.1em;
       text-decoration: none;
 
       &:hover,

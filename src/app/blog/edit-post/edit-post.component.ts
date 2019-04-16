@@ -11,6 +11,8 @@ import { QuestionBase } from '../../shared/forms/questions/question-base';
 import { APIResponse } from '../../shared/interfaces/api-response';
 import { BlogService } from '../blog.service';
 import { Post } from '../post';
+import { NotificationService } from 'src/app/notifications/notification.service';
+import { Notification } from 'src/app/notifications/notification';
 
 @Component({
   selector: 'rb-edit-post',
@@ -23,6 +25,7 @@ export class EditPostComponent implements OnInit {
   public questions: QuestionBase<any>[];
   constructor(
     private service: BlogService,
+    private notification: NotificationService,
     private route: ActivatedRoute,
     private router: Router
   ) {}
@@ -83,6 +86,13 @@ export class EditPostComponent implements OnInit {
       .updateExistingPost(this.postID, data)
       .subscribe((res: APIResponse) => {
         if (res.response.status === 'ok') {
+          this.notification.addNotification(
+            new Notification(
+              `Post ${this.postID} successfully edited`,
+              'success',
+              true
+            )
+          );
           this.router.navigate(['/blog']);
         }
       });

@@ -10,6 +10,7 @@ import { AuthService } from './login/auth.service';
 })
 export class AppComponent implements OnInit {
   public menuActive = true;
+  public notificationsActive = false;
   constructor(
     private navService: NavigationService,
     private auth: AuthService

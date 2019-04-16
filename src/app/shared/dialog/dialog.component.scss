@@ -18,4 +18,9 @@
   box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.4);
   transform: translate(-50%, -50%);
   border-radius: 8px;
+
+  .btn-group .btn {
+    border-radius: 2px;
+    margin-right: 8px;
+  }
 }

@@ -6,7 +6,7 @@
       <li><a [routerLink]="['']" (click)="toggleMenuMobile()">Dashboard</a></li>
       <li class="has-submenu">
         <a (click)="toggleSubmenu('blog')">Blog</a>
-        <ul class="submenu" *ngIf="submenus.blog">
+        <ul class="submenu" *ngIf="submenus.blog" [@growIn]>
           <li><a [routerLink]="['blog']" (click)="toggleMenuMobile()">View</a></li>
           <li><a [routerLink]="['blog/create']" (click)="toggleMenuMobile()">New</a></li>
         </ul>

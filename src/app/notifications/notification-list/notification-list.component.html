@@ -1,5 +1,8 @@
-<div *ngFor="let notif of notifications">
+<div id="notifications-list" class="sidebar" [class.active]="notifActive">
   <ul>
-    <li>{{ notif | json }}</li>
+    <li *ngFor="let notif of notifications">
+      <p><span class="timestamp">{{ notif.timestamp | date: 'HH:mm' }}: </span>
+        {{ notif.message }}</p>
+    </li>
   </ul>
 </div>

@@ -13,13 +13,20 @@
       <div class="current-description">
         <p>{{ weather.currently.summary }}</p>
       </div>
+      <div class="current-wind" style="display: none;">
+        <div class="wind-bearing">
+          <p>{{ weather.currently.windBearing }}</p>
+          <p>{{ weather.currently.windSpeed }}</p>
+        </div>
+      </div>
     </div>
 
     <div class="col-lg-8 flex-container forecast">
       <div class="forecast-day" *ngFor="let day of weather.daily.data.slice(1, 6)">
-        <p>{{ day.time * 1000 | date: 'EEEE' }}</p>
-        <p><span>Max: </span>{{ day.temperatureMax }}&deg;C</p>
-        <p><span>Min: </span>{{ day.temperatureMin }}&deg;C</p>
+        <p class="day-title">{{ day.time * 1000 | date: 'EEEE' }}</p>
+        <p class="day-summary">{{ day.summary}}</p>
+        <p><span>Max: </span>{{ day.temperatureMax | number: '0.1-1' }}&deg;C</p>
+        <p><span>Min: </span>{{ day.temperatureMin | number: '0.1-1' }}&deg;C</p>
       </div>
     </div>
     <div id="attributation">

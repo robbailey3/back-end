@@ -5,11 +5,13 @@ import { Router } from '@angular/router';
 
 import { Debug } from '../debug';
 import { NavigationService } from './navigation.service';
+import { growIn } from 'src/app/shared/animations';
 
 @Component({
   selector: 'rb-navigation',
   templateUrl: './navigation.component.html',
-  styleUrls: ['./navigation.component.scss']
+  styleUrls: ['./navigation.component.scss'],
+  animations: [growIn]
 })
 export class NavigationComponent implements OnInit {
   public menuActive: boolean;

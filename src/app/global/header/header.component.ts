@@ -9,6 +9,7 @@ import { NavigationService } from '../navigation/navigation.service';
 })
 export class HeaderComponent implements OnInit {
   public menuActive: boolean;
+  public notifActive = false;
   constructor(private navService: NavigationService) {}
 
   ngOnInit() {
@@ -18,6 +19,11 @@ export class HeaderComponent implements OnInit {
   menuButtonClickHandler() {
     this.menuActive = !this.menuActive;
     this.navService.buttonStatus(this.menuActive);
+  }
+  toggleNotifications() {
+    this.notifActive = !this.notifActive;
+    console.log(this.notifActive);
+    this.navService.notificiationButtonStatus(this.notifActive);
   }
   subscribeToButton() {
     this.navService.$menuStatus.subscribe(status => {

@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { BlogService } from '../blog.service';
 import { Post } from '../post';
+import { DialogService } from 'src/app/shared/dialog/dialog.service';
 
 @Component({
   selector: 'rb-blog-list',
@@ -11,7 +12,7 @@ import { Post } from '../post';
 })
 export class BlogListComponent implements OnInit {
   posts: Post[];
-  constructor(private service: BlogService) {}
+  constructor(private service: BlogService, private dialog: DialogService) {}
 
   ngOnInit() {
     this.getBlogPosts();
@@ -22,10 +23,21 @@ export class BlogListComponent implements OnInit {
     });
   }
   deletePost(id: number) {
-    this.service.deletePost(id).subscribe((res: APIResponse) => {
-      if (res.response.status === 'ok') {
-        this.getBlogPosts();
-      }
-    });
+    this.dialog
+      .confirm({
+        content: 'Are you sure you want to delete this post?',
+        title: 'Delete post?',
+        confirmButtonTxt: 'Yes',
+        declineButtonTxt: 'No'
+      })
+      .subscribe((res: boolean) => {
+        if (res) {
+          this.service.deletePost(id).subscribe((res: APIResponse) => {
+            if (res.response.status === 'ok') {
+              this.getBlogPosts();
+            }
+          });
+        }
+      });
   }
 }
