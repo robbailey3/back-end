@@ -1,5 +1,5 @@
 <div id="notifications-container">
-  <div id="notification" *ngFor="let notification of notifications">
+  <div *ngFor="let notification of notifications">
     <rb-notification [notification]="notification" *ngIf="notification.isActive" [@fadeInDown]></rb-notification>
   </div>
 </div>

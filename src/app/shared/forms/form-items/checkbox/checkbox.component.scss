@@ -1,11 +1,14 @@
 @import '../../../../../styles/components/colours';
+
 input.custom-checkbox {
   position: absolute;
   left: -10000px;
-  + label {
+
+  +label {
     padding-left: 35px;
     position: relative;
     cursor: pointer;
+
     &::before {
       content: '';
       position: absolute;
@@ -20,13 +23,16 @@ input.custom-checkbox {
       font-size: 20px;
     }
   }
+
   &:checked {
-    + label {
+    +label {
       color: #999;
       text-decoration: line-through;
+
       &::before {
         content: '✔';
-        background: color(accent);
+        background: linear-gradient(30deg, color(accent), darken(color(accent), 10%));
+        border: 2px solid transparent;
       }
     }
   }

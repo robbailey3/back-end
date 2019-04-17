@@ -4,7 +4,7 @@
   font-family: inherit;
   font-size: 0.95em;
   padding: 8px 12px;
-  background: color(primary);
+  background: linear-gradient(30deg, color(primary), color(secondary));
   border: none;
   color: #fff;
   transition: 0.3s ease-in-out;
@@ -14,7 +14,7 @@
 
   &:hover,
   &:focus {
-    background: darken(color(primary), 15%);
+    box-shadow: 0 4px 5px rgba(0, 0, 0, 0.125);
   }
 
   &.btn-danger {
@@ -53,8 +53,7 @@
   }
 
   &:disabled {
-    background: #ddd;
-    color: #999;
+    filter: grayscale(100%);
     cursor: not-allowed;
   }
 }
@@ -62,6 +61,11 @@
 .btn-group {
   .btn {
     border-radius: 0;
+    background: color(primary);
+
+    &.btn-danger {
+      background: color(danger);
+    }
 
     &:first-of-type {
       border-radius: 5px 0 0 5px;

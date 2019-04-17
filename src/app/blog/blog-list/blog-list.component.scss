@@ -4,11 +4,12 @@
   padding: 16px;
   display: block;
 }
+
 #blog-list {
   width: 100%;
   background: #fff;
   border-collapse: collapse;
-  border-radius: 6px;
+  border-radius: 3px;
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2);
   overflow: hidden;
 
@@ -23,7 +24,7 @@
   }
 
   thead {
-    background: color(secondary);
+    background: linear-gradient(to bottom, #333, darken(#333, 20%));
     color: #fff;
   }
 }

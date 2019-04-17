@@ -7,6 +7,8 @@ import { PasswordQuestion } from '../shared/forms/questions/password-question';
 import { TextQuestion } from '../shared/forms/questions/text-question';
 import { UploadQuestion } from '../shared/forms/questions/upload-question';
 import { AuthService } from './auth.service';
+import { Notification } from '../notifications/notification';
+import { NotificationService } from '../notifications/notification.service';
 
 @Component({
   selector: 'rb-login',
@@ -14,7 +16,11 @@ import { AuthService } from './auth.service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private notification: NotificationService
+  ) {}
   public questions = [
     new TextQuestion({
       label: 'E-mail Address',
@@ -31,9 +37,18 @@ export class LoginComponent implements OnInit {
     })
   ];
   submitLoginForm(val: any) {
-    this.authService.login(val).then(() => {
-      this.router.navigate(['/']);
-    });
+    this.authService
+      .login(val)
+      .then(() => {
+        this.router.navigate(['/']);
+      })
+      .catch((err: any) => {
+        if (err) {
+          this.notification.addNotification(
+            new Notification(err, 'error', false)
+          );
+        }
+      });
   }
 
   ngOnInit() {}

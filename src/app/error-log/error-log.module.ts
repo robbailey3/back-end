@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
+import { SharedModule } from '../shared/shared.module';
 import { ErrorDashboardComponent } from './error-dashboard/error-dashboard.component';
 import { ErrorLogRootComponent } from './error-log-root/error-log-root.component';
 import { ErrorLogRoutingModule } from './error-log-routing.module';
@@ -15,6 +16,6 @@ import { PhpErrorsComponent } from './php-errors/php-errors.component';
     JavascriptErrorsComponent,
     ErrorDashboardComponent
   ],
-  imports: [CommonModule, RouterModule, ErrorLogRoutingModule]
+  imports: [CommonModule, RouterModule, ErrorLogRoutingModule, SharedModule]
 })
 export class ErrorLogModule {}

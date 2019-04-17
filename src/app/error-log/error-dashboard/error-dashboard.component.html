@@ -1,3 +1,10 @@
-<p>
-  error-dashboard works!
-</p>
+<div id="error-counts" class="flex-container">
+  <rb-card class="col-md-2 count-card">
+    <p class="count-title">PHP Errors</p>
+    <p class="count-number">{{ phpErrorCount}}</p>
+  </rb-card>
+  <rb-card class="col-md-2 count-card">
+    <p class="count-title">JS Errors</p>
+    <p class="count-number">{{ jsErrorCount}}</p>
+  </rb-card>
+</div>

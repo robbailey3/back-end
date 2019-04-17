@@ -2,7 +2,7 @@ import * as jwtDecode from 'jwt-decode';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { APIResponse } from '../shared/interfaces/api-response';
@@ -31,8 +31,10 @@ export class AuthService {
             reject(res.response.errorMessage);
           }
         },
-        (err: any) => {
-          reject(`An error occurred: ${JSON.stringify(err)}`);
+        (err: HttpErrorResponse) => {
+          reject(
+            `An error occurred: ${JSON.stringify(err.error.errorMessage)}`
+          );
         }
       );
     });
