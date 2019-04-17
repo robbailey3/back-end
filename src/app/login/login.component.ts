@@ -1,3 +1,4 @@
+import { ErrorLoggingService } from './../shared/services/error-logging.service';
 import { Component, OnInit } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -19,7 +20,11 @@ export class LoginComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private router: Router,
+<<<<<<< HEAD
     private notification: NotificationService
+=======
+    private errorlogger: ErrorLoggingService
+>>>>>>> fb20f315b2b1c8ec7be2d45f9d9b171cd420fbcb
   ) {}
   public questions = [
     new TextQuestion({
@@ -42,12 +47,17 @@ export class LoginComponent implements OnInit {
       .then(() => {
         this.router.navigate(['/']);
       })
+<<<<<<< HEAD
       .catch((err: any) => {
         if (err) {
           this.notification.addNotification(
             new Notification(err, 'error', false)
           );
         }
+=======
+      .catch((err: Error) => {
+        this.errorlogger.postJavascriptError(err);
+>>>>>>> fb20f315b2b1c8ec7be2d45f9d9b171cd420fbcb
       });
   }
 
