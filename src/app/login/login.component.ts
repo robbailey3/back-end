@@ -1,3 +1,4 @@
+import { ErrorLoggingService } from './../shared/services/error-logging.service';
 import { Component, OnInit } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -14,7 +15,11 @@ import { AuthService } from './auth.service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private errorlogger: ErrorLoggingService
+  ) {}
   public questions = [
     new TextQuestion({
       label: 'E-mail Address',
@@ -31,9 +36,14 @@ export class LoginComponent implements OnInit {
     })
   ];
   submitLoginForm(val: any) {
-    this.authService.login(val).then(() => {
-      this.router.navigate(['/']);
-    });
+    this.authService
+      .login(val)
+      .then(() => {
+        this.router.navigate(['/']);
+      })
+      .catch((err: Error) => {
+        this.errorlogger.postJavascriptError(err);
+      });
   }
 
   ngOnInit() {}
