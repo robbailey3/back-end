@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PhotoService } from '../photo.service';
-import { APIResponse } from 'src/app/shared/interfaces/api-response';
+import { APIResponse } from './../../shared/interfaces/api-response';
 
 @Component({
   selector: 'rb-photo-albums',
@@ -19,4 +19,5 @@ export class PhotoAlbumsComponent implements OnInit {
       this.albums = response.response.results;
     });
   }
+  newAlbum() {}
 }

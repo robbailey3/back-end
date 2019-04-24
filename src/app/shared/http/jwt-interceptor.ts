@@ -10,8 +10,8 @@ import {
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { tap } from 'rxjs/operators';
-import { NotificationService } from 'src/app/notifications/notification.service';
 import { Notification } from 'src/app/notifications/notification';
+import { NotificationService } from 'src/app/notifications/notification.service';
 
 @Injectable()
 export class JWTInterceptor implements HttpInterceptor {
@@ -26,7 +26,8 @@ export class JWTInterceptor implements HttpInterceptor {
   ): Observable<HttpEvent<any>> {
     if (
       !this.blackList.exec(request.url) ||
-      request.url.search('robbailey3.co.uk') > 0
+      request.url.search('robbailey3.co.uk') > 0 ||
+      request.url.search('localhost') > 0
     ) {
       if (this.auth.jwt) {
         const rqst = request.clone({
