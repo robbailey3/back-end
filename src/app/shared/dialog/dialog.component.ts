@@ -1,7 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { DialogService } from './dialog.service';
+import { Component, Input, OnInit } from '@angular/core';
 import { Dialog } from './dialog';
-import { fadeInDown } from '../animations';
+import { DialogService } from './dialog.service';
 
 @Component({
   selector: 'rb-dialog',

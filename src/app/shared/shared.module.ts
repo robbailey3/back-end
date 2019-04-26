@@ -7,6 +7,9 @@ import { HamburgerButtonComponent } from './components/buttons/hamburgerButton/h
 import { CardComponent } from './components/card/card.component';
 import { FlexContainerComponent } from './components/flex-container/flex-container.component';
 import { LoaderComponent } from './components/loader/loader.component';
+import { ModalComponent } from './components/modal/modal.component';
+import { DialogComponent } from './dialog/dialog.component';
+import { DialogService } from './dialog/dialog.service';
 import { FormItemComponent } from './forms/form-item/form-item.component';
 import { CheckboxComponent } from './forms/form-items/checkbox/checkbox.component';
 import { ChipsComponent } from './forms/form-items/chips/chips.component';
@@ -15,8 +18,7 @@ import { UploadComponent } from './forms/form-items/upload/upload.component';
 import { FormComponent } from './forms/form/form.component';
 import { ErrorLoggingService } from './services/error-logging.service';
 import { LocationService } from './services/location.service';
-import { DialogComponent } from './dialog/dialog.component';
-import { DialogService } from './dialog/dialog.service';
+import { TableComponent } from './components/table/table.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,9 @@ import { DialogService } from './dialog/dialog.service';
     LoaderComponent,
     UploadComponent,
     ChipsComponent,
-    DialogComponent
+    DialogComponent,
+    ModalComponent,
+    TableComponent
   ],
   exports: [
     CardComponent,
@@ -39,7 +43,8 @@ import { DialogService } from './dialog/dialog.service';
     CheckboxComponent,
     FormComponent,
     LoaderComponent,
-    DialogComponent
+    DialogComponent,
+    ModalComponent
   ],
   imports: [CommonModule, EditorModule, FormsModule, ReactiveFormsModule],
   providers: [ErrorLoggingService, LocationService, DialogService]

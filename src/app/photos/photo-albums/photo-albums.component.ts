@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PhotoService } from '../photo.service';
 import { APIResponse } from './../../shared/interfaces/api-response';
+import { Album } from './../album';
 
 @Component({
   selector: 'rb-photo-albums',
@@ -8,7 +9,7 @@ import { APIResponse } from './../../shared/interfaces/api-response';
   styleUrls: ['./photo-albums.component.scss']
 })
 export class PhotoAlbumsComponent implements OnInit {
-  albums: any;
+  albums: Album[];
   constructor(private service: PhotoService) {}
 
   ngOnInit() {
@@ -16,7 +17,7 @@ export class PhotoAlbumsComponent implements OnInit {
   }
   getData() {
     this.service.getAlbums().subscribe((response: APIResponse) => {
-      this.albums = response.response.results;
+      this.albums = response.response.results as Album[];
     });
   }
   newAlbum() {}

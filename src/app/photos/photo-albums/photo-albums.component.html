@@ -3,4 +3,10 @@
     <p>New Album</p>
   </a>
 </div>
-<div *ngIf="albums">{{ albums | json }}</div>
+<div id="albums-container" class="flex-container">
+  <div class="album" *ngFor="let album of albums">
+    <a [routerLink]="[album.albumID]">
+      {{ album.name }}
+    </a>
+  </div>
+</div>
