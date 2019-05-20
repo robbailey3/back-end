@@ -49,4 +49,10 @@ export class BlogService {
   postBlogImage(img: FormData): Observable<APIResponse> {
     return this.http.post<APIResponse>(`${environment.apiURL}/blog/image`, img);
   }
+  updateStatus(id: number, status: boolean): Observable<APIResponse> {
+    return this.http.patch<APIResponse>(
+      `${this.URL_BASE}/${id}/${status}`,
+      null
+    );
+  }
 }

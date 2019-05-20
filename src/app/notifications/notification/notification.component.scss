@@ -4,13 +4,14 @@
 }
 
 .notification {
-  padding: 6px 12px;
+  padding: 12px;
   background: #fff;
-  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, .325);
+  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.325);
   max-width: 500px;
-  border-radius: 1px;
+  border-radius: 10px;
   position: relative;
   margin: 8px 0;
+  padding-right: 64px;
 
   i.material-icons {
     color: #333;

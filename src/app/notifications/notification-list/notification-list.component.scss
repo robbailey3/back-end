@@ -8,8 +8,8 @@ div#notifications-list {
   height: 100%;
   color: #fbfbfb;
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.4);
-  transition: .3s ease-in-out;
-
+  transition: 0.3s ease-in-out;
+  overflow-y: scroll;
   &.active {
     right: 0px;
   }

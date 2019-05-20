@@ -27,13 +27,26 @@ export class TinymceComponent implements ControlValueAccessor {
   public settings = {
     height: 400,
     plugins: `print preview searchreplace autolink directionality emoticons
-      visualblocks visualchars fullscreen image link template codesample table
+      visualblocks visualchars fullscreen image link template table codesample
     charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists
       wordcount imagetools textpattern help code`,
     toolbar: `formatselect | bold italic strikethrough underline
       | link image media codesample | alignleft aligncenter
       alignright alignjustify  | numlist bullist outdent indent | removeformat code`,
     image_caption: true,
+    codesample_languages: [
+      { text: 'HTML/XML', value: 'markup' },
+      { text: 'JavaScript', value: 'javascript' },
+      { text: 'Typescript', value: 'typescript' },
+      { text: 'CSS', value: 'css' },
+      { text: 'SCSS', value: 'scss' },
+      { text: 'PHP', value: 'php' },
+      { text: 'Python', value: 'python' },
+      { text: 'Java', value: 'java' },
+      { text: 'C', value: 'c' },
+      { text: 'C#', value: 'csharp' },
+      { text: 'C++', value: 'cpp' }
+    ],
     style_formats: [
       { title: 'code', block: 'pre', inline: 'code', classes: 'prettyprint' }
     ],

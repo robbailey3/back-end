@@ -1,15 +1,15 @@
-import { ErrorLoggingService } from './../shared/services/error-logging.service';
 import { Component, OnInit } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ErrorLoggingService } from './../shared/services/error-logging.service';
 
 import { Debug } from '../global/debug';
+import { Notification } from '../notifications/notification';
+import { NotificationService } from '../notifications/notification.service';
 import { PasswordQuestion } from '../shared/forms/questions/password-question';
 import { TextQuestion } from '../shared/forms/questions/text-question';
 import { UploadQuestion } from '../shared/forms/questions/upload-question';
 import { AuthService } from './auth.service';
-import { Notification } from '../notifications/notification';
-import { NotificationService } from '../notifications/notification.service';
 
 @Component({
   selector: 'rb-login',
@@ -20,11 +20,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private router: Router,
-<<<<<<< HEAD
-    private notification: NotificationService
-=======
+    private notification: NotificationService,
     private errorlogger: ErrorLoggingService
->>>>>>> fb20f315b2b1c8ec7be2d45f9d9b171cd420fbcb
   ) {}
   public questions = [
     new TextQuestion({
@@ -47,17 +44,12 @@ export class LoginComponent implements OnInit {
       .then(() => {
         this.router.navigate(['/']);
       })
-<<<<<<< HEAD
       .catch((err: any) => {
         if (err) {
           this.notification.addNotification(
             new Notification(err, 'error', false)
           );
         }
-=======
-      .catch((err: Error) => {
-        this.errorlogger.postJavascriptError(err);
->>>>>>> fb20f315b2b1c8ec7be2d45f9d9b171cd420fbcb
       });
   }
 

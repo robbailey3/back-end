@@ -1,9 +1,11 @@
-import { APIResponse } from 'src/app/shared/interfaces/api-response';
 import { Component, OnInit } from '@angular/core';
+import { APIResponse } from 'src/app/shared/interfaces/api-response';
 
+import { Notification } from 'src/app/notifications/notification';
+import { NotificationService } from 'src/app/notifications/notification.service';
+import { DialogService } from 'src/app/shared/dialog/dialog.service';
 import { BlogService } from '../blog.service';
 import { Post } from '../post';
-import { DialogService } from 'src/app/shared/dialog/dialog.service';
 
 @Component({
   selector: 'rb-blog-list',
@@ -12,7 +14,11 @@ import { DialogService } from 'src/app/shared/dialog/dialog.service';
 })
 export class BlogListComponent implements OnInit {
   posts: Post[];
-  constructor(private service: BlogService, private dialog: DialogService) {}
+  constructor(
+    private service: BlogService,
+    private dialog: DialogService,
+    private notification: NotificationService
+  ) {}
 
   ngOnInit() {
     this.getBlogPosts();
@@ -39,5 +45,25 @@ export class BlogListComponent implements OnInit {
           });
         }
       });
+  }
+  publishPost(id: number) {
+    this.service.updateStatus(id, true).subscribe((res: APIResponse) => {
+      if (res.response.status === 'ok') {
+        this.notification.addNotification(
+          new Notification('Post published 🚀', 'success', true)
+        );
+        this.getBlogPosts();
+      }
+    });
+  }
+  unPublishPost(id: number) {
+    this.service.updateStatus(id, false).subscribe((res: APIResponse) => {
+      if (res.response.status === 'ok') {
+        this.notification.addNotification(
+          new Notification('Post unpublished 🚀', 'success', true)
+        );
+        this.getBlogPosts();
+      }
+    });
   }
 }
