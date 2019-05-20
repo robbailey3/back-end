@@ -1,1 +1,12 @@
-<div *ngIf="albums">{{ albums | json }}</div>
+<div id="add-album">
+  <a (click)="newAlbum()">
+    <p>New Album</p>
+  </a>
+</div>
+<div id="albums-container" class="flex-container">
+  <div class="album" *ngFor="let album of albums">
+    <a [routerLink]="[album.albumID]">
+      {{ album.name }}
+    </a>
+  </div>
+</div>

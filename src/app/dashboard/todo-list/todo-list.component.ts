@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 
+import { Subscription } from 'rxjs';
+import { Notification } from 'src/app/notifications/notification';
+import { NotificationService } from 'src/app/notifications/notification.service';
+import { DialogService } from 'src/app/shared/dialog/dialog.service';
 import { listAnimation } from '../../shared/animations/src/list.animation';
 import { APIResponse } from '../../shared/interfaces/api-response';
 import { Todo } from './todo';
 import { TodoService } from './todo.service';
-import { DialogService } from 'src/app/shared/dialog/dialog.service';
-import { Subscription } from 'rxjs';
-import { NotificationService } from 'src/app/notifications/notification.service';
-import { Notification } from 'src/app/notifications/notification';
 
 @Component({
   selector: 'rb-todo-list',
@@ -59,7 +59,6 @@ export class TodoListComponent implements OnInit {
           });
           this.todos.splice(this.todos.indexOf(todo), 1);
         }
-        // this.subscription.unsubscribe();
       });
   }
 }

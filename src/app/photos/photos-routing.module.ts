@@ -2,9 +2,9 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { AuthGuard } from '../shared/guards/auth.guard';
-import { PhotosRootComponent } from './photos-root/photos-root.component';
-import { PhotoAlbumsComponent } from './photo-albums/photo-albums.component';
 import { PhotoAlbumComponent } from './photo-album/photo-album.component';
+import { PhotoAlbumsComponent } from './photo-albums/photo-albums.component';
+import { PhotosRootComponent } from './photos-root/photos-root.component';
 
 const routes: Routes = [
   {
@@ -18,7 +18,7 @@ const routes: Routes = [
         component: PhotoAlbumsComponent
       },
       {
-        path: 'album/:id',
+        path: ':id',
         component: PhotoAlbumComponent
       }
     ]
