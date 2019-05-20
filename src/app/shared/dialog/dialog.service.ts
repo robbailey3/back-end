@@ -1,7 +1,9 @@
+import { Observable, of, Subject } from 'rxjs';
+
 import { Injectable } from '@angular/core';
-import { DialogComponent } from './dialog.component';
+
 import { Dialog } from './dialog';
-import { Subject, of, Observable } from 'rxjs';
+import { DialogComponent } from './dialog.component';
 
 @Injectable({
   providedIn: 'root'

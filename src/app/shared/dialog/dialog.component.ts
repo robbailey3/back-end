@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+
 import { Dialog } from './dialog';
 import { DialogService } from './dialog.service';
 

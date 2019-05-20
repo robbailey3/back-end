@@ -1,10 +1,10 @@
 import { Debug } from 'src/app/global/debug';
+import { NavigationService } from 'src/app/global/navigation/navigation.service';
 
 import { Component, OnInit } from '@angular/core';
 
 import { Notification } from '../notification';
 import { NotificationService } from '../notification.service';
-import { NavigationService } from 'src/app/global/navigation/navigation.service';
 
 @Component({
   selector: 'rb-notification-list',

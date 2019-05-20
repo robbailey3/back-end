@@ -1,17 +1,13 @@
 import { Observable } from 'rxjs';
-import { AuthService } from 'src/app/login/auth.service';
-
-import {
-  HttpEvent,
-  HttpHandler,
-  HttpInterceptor,
-  HttpRequest,
-  HttpResponse
-} from '@angular/common/http';
-import { Injectable } from '@angular/core';
 import { tap } from 'rxjs/operators';
+import { AuthService } from 'src/app/login/auth.service';
 import { Notification } from 'src/app/notifications/notification';
 import { NotificationService } from 'src/app/notifications/notification.service';
+
+import {
+    HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpResponse
+} from '@angular/common/http';
+import { Injectable } from '@angular/core';
 
 @Injectable()
 export class JWTInterceptor implements HttpInterceptor {

@@ -1,3 +1,5 @@
+import { Notification } from 'src/app/notifications/notification';
+import { NotificationService } from 'src/app/notifications/notification.service';
 import { ChipsQuestion } from 'src/app/shared/forms/questions/chips-question';
 import { TextQuestion } from 'src/app/shared/forms/questions/text-question';
 import { UploadQuestion } from 'src/app/shared/forms/questions/upload-question';
@@ -9,8 +11,6 @@ import { Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { BlogService } from '../blog.service';
-import { NotificationService } from 'src/app/notifications/notification.service';
-import { Notification } from 'src/app/notifications/notification';
 
 @Component({
   selector: 'rb-new-post',

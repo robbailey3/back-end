@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { APIResponse } from 'src/app/shared/interfaces/api-response';
-
 import { Notification } from 'src/app/notifications/notification';
 import { NotificationService } from 'src/app/notifications/notification.service';
 import { DialogService } from 'src/app/shared/dialog/dialog.service';
+import { APIResponse } from 'src/app/shared/interfaces/api-response';
+
+import { Component, OnInit } from '@angular/core';
+
 import { BlogService } from '../blog.service';
 import { Post } from '../post';
 

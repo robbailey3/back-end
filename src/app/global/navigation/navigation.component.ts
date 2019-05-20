@@ -1,11 +1,11 @@
 import { AuthService } from 'src/app/login/auth.service';
+import { growIn } from 'src/app/shared/animations';
 
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { Debug } from '../debug';
 import { NavigationService } from './navigation.service';
-import { growIn } from 'src/app/shared/animations';
 
 @Component({
   selector: 'rb-navigation',

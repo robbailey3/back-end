@@ -1,3 +1,5 @@
+import { Notification } from 'src/app/notifications/notification';
+import { NotificationService } from 'src/app/notifications/notification.service';
 import { ChipsQuestion } from 'src/app/shared/forms/questions/chips-question';
 import { TextQuestion } from 'src/app/shared/forms/questions/text-question';
 import { UploadQuestion } from 'src/app/shared/forms/questions/upload-question';
@@ -11,8 +13,6 @@ import { QuestionBase } from '../../shared/forms/questions/question-base';
 import { APIResponse } from '../../shared/interfaces/api-response';
 import { BlogService } from '../blog.service';
 import { Post } from '../post';
-import { NotificationService } from 'src/app/notifications/notification.service';
-import { Notification } from 'src/app/notifications/notification';
 
 @Component({
   selector: 'rb-edit-post',

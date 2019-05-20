@@ -1,5 +1,7 @@
 import { CardComponent } from 'src/app/shared/components/card/card.component';
-import { FlexContainerComponent } from 'src/app/shared/components/flex-container/flex-container.component';
+import {
+    FlexContainerComponent
+} from 'src/app/shared/components/flex-container/flex-container.component';
 
 import { HttpClientModule } from '@angular/common/http';
 import { HttpClientTestingModule } from '@angular/common/http/testing';

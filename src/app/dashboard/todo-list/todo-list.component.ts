@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-
 import { Subscription } from 'rxjs';
 import { Notification } from 'src/app/notifications/notification';
 import { NotificationService } from 'src/app/notifications/notification.service';
 import { DialogService } from 'src/app/shared/dialog/dialog.service';
+
+import { Component, OnInit } from '@angular/core';
+
 import { listAnimation } from '../../shared/animations/src/list.animation';
 import { APIResponse } from '../../shared/interfaces/api-response';
 import { Todo } from './todo';

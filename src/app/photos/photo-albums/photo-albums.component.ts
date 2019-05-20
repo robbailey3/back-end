@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+
+import { APIResponse } from '../../shared/interfaces/api-response';
+import { Album } from '../album';
 import { PhotoService } from '../photo.service';
-import { APIResponse } from './../../shared/interfaces/api-response';
-import { Album } from './../album';
 
 @Component({
   selector: 'rb-photo-albums',
