@@ -1,12 +1,29 @@
-<div id="add-album">
-  <a (click)="newAlbum()">
-    <p>New Album</p>
-  </a>
-</div>
-<div id="albums-container" class="flex-container">
+<div class="album-grid">
+  <div id="add-album">
+    <a (click)="toggleModal()">
+      <p>
+        <i class="material-icons">
+          add
+        </i>
+      </p>
+      <p>Add an Album</p>
+    </a>
+  </div>
   <div class="album" *ngFor="let album of albums">
+    <img *ngIf="album.photoID" src="album.path" alt="album.caption" />
     <a [routerLink]="[album.albumID]">
       {{ album.name }}
     </a>
   </div>
 </div>
+<rb-modal
+  id="new-album-modal"
+  [active]="modalState === 'active'"
+  (cancel)="toggleModal()"
+>
+  <rb-form
+    [questions]="questions"
+    buttonText="Save"
+    (formSubmit)="onSubmit($event)"
+  ></rb-form>
+</rb-modal>

@@ -11,11 +11,17 @@ import { PhotoService } from '../photo.service';
 })
 export class PhotoAlbumComponent implements OnInit {
   private albumID: number;
-  private photos: Photo[];
+  modalState = 'inactive';
+  public photos: Photo[];
   constructor(private route: ActivatedRoute, private service: PhotoService) {}
 
   ngOnInit() {
     this.getIDFromRoute();
+  }
+  toggleModal() {
+    this.modalState === 'inactive'
+      ? (this.modalState = 'active')
+      : (this.modalState = 'inactive');
   }
   getIDFromRoute() {
     this.route.paramMap.subscribe((route: Params) => {

@@ -1,4 +1,14 @@
-<div id="modal-overlay"></div>
-<div class="modal">
-  <ng-content></ng-content>
+<div *ngIf="active">
+  <div id="modal-overlay" (click)="close()"></div>
+  <div
+    class="modal"
+    [@fadeInDown]
+    [style.width]="width"
+    [style.height]="height"
+  >
+    <a (click)="close()" class="btn btn-round btn-ghost" id="modal-close-btn"
+      ><i class="material-icons">close</i></a
+    >
+    <ng-content></ng-content>
+  </div>
 </div>

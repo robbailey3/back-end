@@ -20,4 +20,7 @@ export class PhotoService {
   getAlbum(id: number): Observable<APIResponse> {
     return this.http.get<APIResponse>(`${this.PHOTO_URL_BASE}/${id}`);
   }
+  createAlbum(data: object): Observable<APIResponse> {
+    return this.http.post<APIResponse>(`${this.PHOTO_URL_BASE}`, data);
+  }
 }

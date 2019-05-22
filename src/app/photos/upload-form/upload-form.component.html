@@ -1,0 +1,19 @@
+<div id="upload-form">
+  <div class="form-group">
+    <label for="files">Upload photos</label>
+    <input
+      type="file"
+      name="files"
+      id="files"
+      multiple
+      required
+      (change)="generatePreviews($event)"
+    />
+  </div>
+  <div class="previews" *ngIf="previews">
+    <div class="img-preview" *ngFor="let preview of previews">
+      <img [src]="preview" alt="" />
+    </div>
+  </div>
+</div>
+<div class="upload-button-container"></div>

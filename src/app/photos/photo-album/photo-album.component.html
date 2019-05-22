@@ -1,3 +1,24 @@
-<p>
-  photo-album works!
-</p>
+<div id="photo-grid">
+  <div id="no-photos" *ngIf="!photos || photos.length === 0">
+    <p>No photos found 😢</p>
+  </div>
+  <div id="add-photos">
+    <a (click)="toggleModal()">
+      <p>
+        <i class="material-icons">
+          add
+        </i>
+      </p>
+      <p>Add photos</p>
+    </a>
+  </div>
+</div>
+<rb-modal
+  id="add-photos-modal"
+  [active]="modalState === 'active'"
+  [height]="'80%'"
+  [width]="'80%'"
+  (cancel)="toggleModal()"
+>
+  <rb-upload-form></rb-upload-form>
+</rb-modal>
