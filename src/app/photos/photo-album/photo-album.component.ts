@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 
 import { Photo } from '../photo';
@@ -13,6 +13,13 @@ export class PhotoAlbumComponent implements OnInit {
   private albumID: number;
   modalState = 'inactive';
   public photos: Photo[];
+  @HostListener('window:keydown', ['$event']) onkeypress($event) {
+    if ($event.key === 'Escape') {
+      if (this.modalState === 'active') {
+        this.modalState = 'inactive';
+      }
+    }
+  }
   constructor(private route: ActivatedRoute, private service: PhotoService) {}
 
   ngOnInit() {

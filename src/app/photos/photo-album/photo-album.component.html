@@ -2,17 +2,23 @@
   <div id="no-photos" *ngIf="!photos || photos.length === 0">
     <p>No photos found 😢</p>
   </div>
-  <div id="add-photos">
-    <a (click)="toggleModal()">
-      <p>
-        <i class="material-icons">
-          add
-        </i>
-      </p>
-      <p>Add photos</p>
-    </a>
+  <a id="add-photos" (click)="toggleModal()">
+    <p>
+      <i class="material-icons">
+        add
+      </i>
+    </p>
+    <p>Add photos</p>
+  </a>
+  <div class="photo" *ngFor="let photo of photos">
+    <img [src]="photo.path" [alt]="photo.caption" />
+    <button class="btn btn-round btn-ghost">
+      <i class="material-icons">more_vert</i>
+    </button>
+    <p class="image-caption">{{ photo.caption }}</p>
   </div>
 </div>
+
 <rb-modal
   id="add-photos-modal"
   [active]="modalState === 'active'"

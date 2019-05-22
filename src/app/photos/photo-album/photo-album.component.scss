@@ -8,17 +8,32 @@
     grid-template-columns: repeat(3, 1fr);
   }
   @include breakpoint(xl) {
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: repeat(4, 1fr);
   }
   padding: 32px;
   align-items: center;
   justify-items: center;
-  grid-gap: 2rem;
+  grid-gap: 3rem;
+  .photo {
+    position: relative;
+    .btn {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+    }
+    img {
+      width: 100%;
+    }
+    .image-caption {
+      text-align: center;
+      margin: 0;
+    }
+  }
 }
 #add-photos {
-  display: flex;
   border: 5px dashed #8a8a8a;
   width: 100%;
+  height: 100%;
   text-align: center;
   color: #8a8a8a;
   min-height: 100px;
