@@ -1,5 +1,5 @@
 <div id="dialog-component" *ngIf="open">
-  <rb-modal>
+  <rb-modal [active]="open">
     <h1 class="dialog-title">{{ options.title }}</h1>
     <p class="dialog-title">{{ options.content }}</p>
     <div class="btn-group">

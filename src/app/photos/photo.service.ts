@@ -10,17 +10,24 @@ import { APIResponse } from '../shared/interfaces/api-response';
   providedIn: 'root'
 })
 export class PhotoService {
-  private readonly ALBUM_URL_BASE = `${environment.apiURL}/albums`;
-  private readonly PHOTO_URL_BASE = `${environment.apiURL}/album`;
+  private readonly ALBUMS_URL_BASE = `${environment.apiURL}/albums`;
+  private readonly ALBUM_URL_BASE = `${environment.apiURL}/album`;
+  private readonly PHOTO_URL_BASE = `${environment.apiURL}/photo`;
   constructor(private http: HttpClient) {}
 
   getAlbums(): Observable<APIResponse> {
-    return this.http.get<APIResponse>(this.ALBUM_URL_BASE);
+    return this.http.get<APIResponse>(this.ALBUMS_URL_BASE);
   }
   getAlbum(id: number): Observable<APIResponse> {
-    return this.http.get<APIResponse>(`${this.PHOTO_URL_BASE}/${id}`);
+    return this.http.get<APIResponse>(`${this.ALBUM_URL_BASE}/${id}`);
   }
   createAlbum(data: object): Observable<APIResponse> {
-    return this.http.post<APIResponse>(`${this.PHOTO_URL_BASE}`, data);
+    return this.http.post<APIResponse>(`${this.ALBUM_URL_BASE}`, data);
+  }
+  deletePhoto(photoID: number): Observable<APIResponse> {
+    return this.http.delete<APIResponse>(`${this.PHOTO_URL_BASE}/${photoID}`);
+  }
+  postPhotos(formData: FormData): Observable<APIResponse> {
+    return this.http.post<APIResponse>(`${this.PHOTO_URL_BASE}s`, formData);
   }
 }

@@ -10,10 +10,12 @@
       (change)="generatePreviews($event)"
     />
   </div>
-  <div class="previews" *ngIf="previews">
+  <div class="previews" *ngIf="previews.length > 0">
     <div class="img-preview" *ngFor="let preview of previews">
-      <img [src]="preview" alt="" />
+      <img [src]="preview" />
     </div>
   </div>
 </div>
-<div class="upload-button-container"></div>
+<div class="upload-button-container" *ngIf="previews.length > 0">
+  <button class="btn btn-primary" (click)="submitForm()">Upload!</button>
+</div>

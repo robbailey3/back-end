@@ -5,4 +5,7 @@ export interface Photo {
   caption: string;
   albumID: number;
   exif: string;
+  edit_mode?: boolean;
+  photo_fullscreen?: boolean;
+  menu_active?: boolean;
 }

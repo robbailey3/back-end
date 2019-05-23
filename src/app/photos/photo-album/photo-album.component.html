@@ -12,10 +12,38 @@
   </a>
   <div class="photo" *ngFor="let photo of photos">
     <img [src]="photo.path" [alt]="photo.caption" />
-    <button class="btn btn-round btn-ghost">
+    <button class="btn btn-round btn-ghost" (click)="togglePhotoMenu(photo)">
       <i class="material-icons">more_vert</i>
     </button>
-    <p class="image-caption">{{ photo.caption }}</p>
+    <div class="photo-caption" *ngIf="!photo.edit_mode">
+      <p>{{ photo.caption }}</p>
+    </div>
+    <div class="photo-caption-edit" *ngIf="photo.edit_mode">
+      <div class="form-group">
+        <label for="photo-caption-{{ photo.photoID }}">Caption</label>
+        <input
+          class="form-control"
+          type="text"
+          name="photo-caption-{{ photo.photoID }}"
+          id="photo-caption-{{ photo.photoID }}"
+          [(ngModel)]="photo.caption"
+          (onblur)="updateCaption(photo.photoID, photo.caption)"
+          (keyup.enter)="updateCaption(photo.photoID, photo.caption)"
+        />
+      </div>
+    </div>
+    <div class="image-menu" *ngIf="photo.menu_active">
+      <ul>
+        <li><a (click)="togglePhotoFullscreen(photo)">View Full Screen</a></li>
+        <li>
+          <a (click)="togglePhotoEditMode(photo)"
+            ><span *ngIf="!photo.edit_mode">Enter Edit Mode</span
+            ><span *ngIf="photo.edit_mode">Exit Edit Mode</span></a
+          >
+        </li>
+        <li><a (click)="deletePhoto(photo)">Delete</a></li>
+      </ul>
+    </div>
   </div>
 </div>
 
@@ -26,5 +54,5 @@
   [width]="'80%'"
   (cancel)="toggleModal()"
 >
-  <rb-upload-form></rb-upload-form>
+  <rb-upload-form [albumID]="albumID"></rb-upload-form>
 </rb-modal>

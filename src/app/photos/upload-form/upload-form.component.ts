@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Notification } from '../../notifications/notification';
+import { PhotoService } from '../photo.service';
 import { NotificationService } from './../../notifications/notification.service';
 
 @Component({
@@ -8,6 +9,7 @@ import { NotificationService } from './../../notifications/notification.service'
   styleUrls: ['./upload-form.component.scss']
 })
 export class UploadFormComponent implements OnInit {
+  @Input() albumID: number;
   previews: HTMLImageElement[] = [];
   files: File[] = [];
   private readonly MAX_FILE_SIZE = 1000 * 1000 * 2;
@@ -18,7 +20,10 @@ export class UploadFormComponent implements OnInit {
     'image/gif'
   ];
   private errors = [];
-  constructor(private notification: NotificationService) {}
+  constructor(
+    private notification: NotificationService,
+    private service: PhotoService
+  ) {}
 
   ngOnInit() {}
   generatePreviews($event) {
@@ -44,7 +49,6 @@ export class UploadFormComponent implements OnInit {
     this.errors.forEach((err) => {
       this.notification.addNotification(new Notification(err, 'error'));
     });
-    $event.target.value = null;
   }
   validateFile(file: File): boolean {
     if (file.size > this.MAX_FILE_SIZE) {
@@ -56,5 +60,15 @@ export class UploadFormComponent implements OnInit {
       return false;
     }
     return true;
+  }
+  submitForm() {
+    const formData = new FormData();
+    this.files.forEach((file) => {
+      formData.append('files[]', file);
+    });
+    formData.append('albumID', this.albumID.toString());
+    this.service.postPhotos(formData).subscribe((res) => {
+      console.log(res);
+    });
   }
 }
