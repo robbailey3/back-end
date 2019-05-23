@@ -10,9 +10,10 @@
     </a>
   </div>
   <div class="album" *ngFor="let album of albums">
-    <img *ngIf="album.photoID" src="album.path" alt="album.caption" />
+    <div class="album-overlay" [class.darken]="!album.photoID"></div>
     <a [routerLink]="[album.albumID]">
-      {{ album.name }}
+      <img *ngIf="album.photoID" [src]="album.path" [alt]="album.caption" />
+      <span class="album-name">{{ album.name }}</span>
     </a>
   </div>
 </div>

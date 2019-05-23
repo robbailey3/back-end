@@ -1,6 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Notification } from '../../notifications/notification';
 import { PhotoService } from '../photo.service';
+import { APIResponse } from './../../../../../frontEnd/src/app/shared/interfaces/api-response.interface';
 import { NotificationService } from './../../notifications/notification.service';
 
 @Component({
@@ -10,8 +11,10 @@ import { NotificationService } from './../../notifications/notification.service'
 })
 export class UploadFormComponent implements OnInit {
   @Input() albumID: number;
+  @Output() uploaded: EventEmitter<void> = new EventEmitter<void>();
   previews: HTMLImageElement[] = [];
   files: File[] = [];
+  uploadField: HTMLElement;
   private readonly MAX_FILE_SIZE = 1000 * 1000 * 2;
   private readonly ACCEPTED_FILETYPES = [
     'image/jpg',
@@ -29,6 +32,7 @@ export class UploadFormComponent implements OnInit {
   generatePreviews($event) {
     this.previews = [];
     this.errors = [];
+    this.uploadField = $event.target;
     const files = Array.from($event.target.files);
     [].forEach.call(files, (file: File) => {
       const fr = new FileReader();
@@ -67,8 +71,14 @@ export class UploadFormComponent implements OnInit {
       formData.append('files[]', file);
     });
     formData.append('albumID', this.albumID.toString());
-    this.service.postPhotos(formData).subscribe((res) => {
-      console.log(res);
+    this.service.postPhotos(formData).subscribe((res: APIResponse) => {
+      if (res.response.status === 'ok') {
+        this.previews = [];
+        this.files = [];
+        this.errors = [];
+        this.uploadField.files = null;
+        this.uploaded.emit();
+      }
     });
   }
 }

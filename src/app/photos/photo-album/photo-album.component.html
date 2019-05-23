@@ -35,6 +35,7 @@
     <div class="image-menu" *ngIf="photo.menu_active">
       <ul>
         <li><a (click)="togglePhotoFullscreen(photo)">View Full Screen</a></li>
+        <li><a (click)="setAlbumImage(photo)">Set as Album Cover</a></li>
         <li>
           <a (click)="togglePhotoEditMode(photo)"
             ><span *ngIf="!photo.edit_mode">Enter Edit Mode</span
@@ -54,5 +55,8 @@
   [width]="'80%'"
   (cancel)="toggleModal()"
 >
-  <rb-upload-form [albumID]="albumID"></rb-upload-form>
+  <rb-upload-form
+    [albumID]="albumID"
+    (uploaded)="onUploadEnd()"
+  ></rb-upload-form>
 </rb-modal>

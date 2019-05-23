@@ -30,4 +30,14 @@ export class PhotoService {
   postPhotos(formData: FormData): Observable<APIResponse> {
     return this.http.post<APIResponse>(`${this.PHOTO_URL_BASE}s`, formData);
   }
+  updateCaption(photoID: number, caption: string): Observable<APIResponse> {
+    return this.http.patch<APIResponse>(`${this.PHOTO_URL_BASE}/${photoID}`, {
+      caption
+    });
+  }
+  setAlbumImage(photoID: number, albumID: number): Observable<APIResponse> {
+    return this.http.patch<APIResponse>(`${this.ALBUM_URL_BASE}/${albumID}`, {
+      photoID
+    });
+  }
 }

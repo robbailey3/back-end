@@ -1,6 +1,8 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
+import { NotificationService } from './../../notifications/notification.service';
 
+import { Notification } from 'src/app/notifications/notification';
 import { APIResponse } from '../../shared/interfaces/api-response';
 import { Photo } from '../photo';
 import { PhotoService } from '../photo.service';
@@ -21,7 +23,11 @@ export class PhotoAlbumComponent implements OnInit {
       }
     }
   }
-  constructor(private route: ActivatedRoute, private service: PhotoService) {}
+  constructor(
+    private route: ActivatedRoute,
+    private service: PhotoService,
+    private notification: NotificationService
+  ) {}
 
   ngOnInit() {
     this.getIDFromRoute();
@@ -34,11 +40,11 @@ export class PhotoAlbumComponent implements OnInit {
   getIDFromRoute(): void {
     this.route.paramMap.subscribe((route: Params) => {
       this.albumID = +route.params['id'];
-      this.getData(this.albumID);
+      this.getData();
     });
   }
-  getData(id: number): void {
-    this.service.getAlbum(id).subscribe((res) => {
+  getData(): void {
+    this.service.getAlbum(this.albumID).subscribe((res) => {
       this.photos = res.response.results as Photo[];
     });
   }
@@ -60,6 +66,23 @@ export class PhotoAlbumComponent implements OnInit {
     });
   }
   updateCaption(photoID: number, caption: string): void {
-    console.log({ photoID, caption });
+    this.service
+      .updateCaption(photoID, caption)
+      .subscribe((res: APIResponse) => {
+        if (res.response.status === 'ok') {
+          this.notification.addNotification(
+            new Notification('Caption updated 📷 ', 'success', true)
+          );
+        }
+      });
+  }
+  setAlbumImage(photo: Photo) {
+    this.service
+      .setAlbumImage(photo.photoID, this.albumID)
+      .subscribe((res: APIResponse) => console.log(res));
+  }
+  onUploadEnd() {
+    this.modalState = 'inactive';
+    this.getData();
   }
 }
