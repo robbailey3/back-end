@@ -6,6 +6,6 @@ export interface Photo {
   albumID: number;
   exif: string;
   edit_mode?: boolean;
-  photo_fullscreen?: boolean;
   menu_active?: boolean;
+  is_selected?: boolean;
 }

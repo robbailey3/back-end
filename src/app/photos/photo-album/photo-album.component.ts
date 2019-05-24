@@ -1,8 +1,11 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { AfterViewInit, Component, HostListener, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { NotificationService } from './../../notifications/notification.service';
 
-import { Notification } from 'src/app/notifications/notification';
+import { Subject, Subject as BehaviourSubject, Subscription } from 'rxjs';
+// tslint:disable-next-line:no-submodule-imports
+import { distinctUntilChanged, throttleTime } from 'rxjs/operators';
+import { Notification } from '../../notifications/notification';
 import { APIResponse } from '../../shared/interfaces/api-response';
 import { Photo } from '../photo';
 import { PhotoService } from '../photo.service';
@@ -12,10 +15,15 @@ import { PhotoService } from '../photo.service';
   templateUrl: './photo-album.component.html',
   styleUrls: ['./photo-album.component.scss']
 })
-export class PhotoAlbumComponent implements OnInit {
+export class PhotoAlbumComponent implements OnInit, AfterViewInit {
   public modalState = 'inactive';
+  public exifPanelState = 'inactive';
   public albumID: number;
   public photos: Photo[];
+  public fullScreenImage: Photo;
+  public captionInput: Subject<any> = new Subject<any>();
+  public currentExif: any;
+  selectedPhotos: Photo[] = [];
   @HostListener('window:keydown', ['$event']) onkeypress($event) {
     if ($event.key === 'Escape') {
       if (this.modalState === 'active') {
@@ -31,6 +39,11 @@ export class PhotoAlbumComponent implements OnInit {
 
   ngOnInit() {
     this.getIDFromRoute();
+  }
+  ngAfterViewInit() {
+    this.captionInput
+      .pipe(throttleTime(1000))
+      .subscribe((photo: Photo) => this.updateCaption(photo));
   }
   toggleModal(): void {
     this.modalState === 'inactive'
@@ -52,34 +65,71 @@ export class PhotoAlbumComponent implements OnInit {
     photo.menu_active = !photo.menu_active;
   }
   togglePhotoEditMode(photo: Photo): void {
+    this.togglePhotoMenu(photo);
     photo.edit_mode = !photo.edit_mode;
   }
   togglePhotoFullscreen(photo: Photo): void {
-    photo.photo_fullscreen = !photo.photo_fullscreen;
-    console.log(photo);
+    this.togglePhotoMenu(photo);
+    this.fullScreenImage = photo;
+    console.log(this);
+  }
+  toggleSelect(photo: Photo, $event?: MouseEvent) {
+    const curPState = photo.is_selected;
+    if (!$event.ctrlKey) {
+      this.selectedPhotos = [];
+      this.photos.map((ph: Photo) => (ph.is_selected = false));
+    }
+    this.selectedPhotos.includes(photo)
+      ? this.selectedPhotos.splice(this.selectedPhotos.indexOf(photo), 1)
+      : this.selectedPhotos.push(photo);
+    this.currentExif = photo.exif;
+    photo.is_selected = !curPState;
+  }
+  toggleExifPanel() {
+    this.exifPanelState === 'inactive'
+      ? (this.exifPanelState = 'active')
+      : (this.exifPanelState = 'inactive');
   }
   deletePhoto(photo: Photo): void {
     this.service.deletePhoto(photo.photoID).subscribe((res: APIResponse) => {
       if (res.response.status === 'ok') {
         this.photos.splice(this.photos.indexOf(photo), 1);
+        this.notification.addNotification(
+          new Notification('Photo 📷 deleted', 'success', true)
+        );
       }
     });
   }
-  updateCaption(photoID: number, caption: string): void {
+  captionSubmit(photo: Photo) {
+    this.captionInput.next(photo);
+  }
+  updateCaption(photo: Photo): void {
     this.service
-      .updateCaption(photoID, caption)
+      .updateCaption(photo.photoID, photo.caption)
       .subscribe((res: APIResponse) => {
         if (res.response.status === 'ok') {
+          this.togglePhotoEditMode(photo);
+          this.togglePhotoMenu(photo);
           this.notification.addNotification(
             new Notification('Caption updated 📷 ', 'success', true)
           );
         }
       });
   }
+  closeFullScreen() {
+    this.fullScreenImage = null;
+  }
   setAlbumImage(photo: Photo) {
     this.service
       .setAlbumImage(photo.photoID, this.albumID)
-      .subscribe((res: APIResponse) => console.log(res));
+      .subscribe((res: APIResponse) => {
+        if (res.response.status === 'ok') {
+          this.togglePhotoMenu(photo);
+          this.notification.addNotification(
+            new Notification('Album cover image updated 📷 ', 'success', true)
+          );
+        }
+      });
   }
   onUploadEnd() {
     this.modalState = 'inactive';

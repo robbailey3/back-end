@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { APIResponse } from 'src/app/shared/interfaces/api-response';
 import { Notification } from '../../notifications/notification';
 import { PhotoService } from '../photo.service';
-import { APIResponse } from './../../../../../frontEnd/src/app/shared/interfaces/api-response.interface';
 import { NotificationService } from './../../notifications/notification.service';
 
 @Component({
@@ -14,7 +14,7 @@ export class UploadFormComponent implements OnInit {
   @Output() uploaded: EventEmitter<void> = new EventEmitter<void>();
   previews: HTMLImageElement[] = [];
   files: File[] = [];
-  uploadField: HTMLElement;
+  uploadField: any;
   private readonly MAX_FILE_SIZE = 1000 * 1000 * 2;
   private readonly ACCEPTED_FILETYPES = [
     'image/jpg',

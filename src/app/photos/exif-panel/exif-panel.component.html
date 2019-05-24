@@ -1,0 +1,30 @@
+<div id="exif-panel" *ngIf="exif">
+  <div class="exif-section">
+    <p *ngIf="exif['DateTimeOriginal']">
+      <strong>Date: </strong>{{ exif['DateTimeOriginal'] }}
+    </p>
+    <p *ngIf="exif['FileSize']">
+      <strong>File Size: </strong
+      >{{ exif['FileSize'] / 1000 / 1000 | number: '1.0-1' }}MB
+    </p>
+    <p *ngIf="exif['COMPUTED']">
+      <strong>Image Dimensions: </strong
+      ><span *ngIf="exif['COMPUTED']['Width']">{{
+        exif['COMPUTED']['Width']
+      }}</span
+      >x<span *ngIf="exif['COMPUTED']['Height']">{{
+        exif['COMPUTED']['Height']
+      }}</span>
+    </p>
+  </div>
+  <p *ngIf="exif['ExposureTime']">
+    <strong>Exposure Time: </strong>{{ exif['ExposureTime'] }}
+  </p>
+  <p *ngIf="exif['FocalLength']">
+    <strong>Focal Length: </strong>{{ exif['FocalLength'].split('/')[0] }}mm
+  </p>
+  <p *ngIf="exif['COMPUTED']['ApertureFNumber']">
+    <strong>Aperture: </strong>{{ exif['COMPUTED']['ApertureFNumber'] }}
+  </p>
+  <p *ngIf="exif['Model']"><strong>Camera: </strong>{{ exif['Model'] }}</p>
+</div>

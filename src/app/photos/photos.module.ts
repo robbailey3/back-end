@@ -8,13 +8,15 @@ import { PhotoAlbumsComponent } from './photo-albums/photo-albums.component';
 import { PhotosRootComponent } from './photos-root/photos-root.component';
 import { PhotosRoutingModule } from './photos-routing.module';
 import { UploadFormComponent } from './upload-form/upload-form.component';
+import { ExifPanelComponent } from './exif-panel/exif-panel.component';
 
 @NgModule({
   declarations: [
     PhotosRootComponent,
     PhotoAlbumsComponent,
     PhotoAlbumComponent,
-    UploadFormComponent
+    UploadFormComponent,
+    ExifPanelComponent
   ],
   imports: [CommonModule, PhotosRoutingModule, SharedModule, FormsModule]
 })

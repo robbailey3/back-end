@@ -1,22 +1,33 @@
+<div id="photo-toolbar" class="flex-container toolbar">
+  <button class="toolbar-btn" (click)="toggleModal()">Add photos</button>
+  <button class="toolbar-btn" (click)="toggleExifPanel()">
+    Toggle Exif Panel
+  </button>
+  <button class="toolbar-btn" [disabled]="selectedPhotos.length === 0">
+    Delete Photos
+  </button>
+</div>
 <div id="photo-grid">
   <div id="no-photos" *ngIf="!photos || photos.length === 0">
     <p>No photos found 😢</p>
   </div>
-  <a id="add-photos" (click)="toggleModal()">
-    <p>
-      <i class="material-icons">
-        add
-      </i>
-    </p>
-    <p>Add photos</p>
-  </a>
-  <div class="photo" *ngFor="let photo of photos">
-    <img [src]="photo.path" [alt]="photo.caption" />
+  <div
+    class="photo"
+    *ngFor="let photo of photos"
+    tabindex="0"
+    [class.is-selected]="photo.is_selected"
+  >
+    <img
+      [src]="photo.path"
+      [alt]="photo.caption"
+      (click)="toggleSelect(photo, $event)"
+    />
     <button class="btn btn-round btn-ghost" (click)="togglePhotoMenu(photo)">
       <i class="material-icons">more_vert</i>
     </button>
-    <div class="photo-caption" *ngIf="!photo.edit_mode">
-      <p>{{ photo.caption }}</p>
+    <div class="photo-details" *ngIf="!photo.edit_mode">
+      <p class="photo-caption">{{ photo.caption }}</p>
+      <pre class="photo-path">{{ photo.path }}</pre>
     </div>
     <div class="photo-caption-edit" *ngIf="photo.edit_mode">
       <div class="form-group">
@@ -27,22 +38,36 @@
           name="photo-caption-{{ photo.photoID }}"
           id="photo-caption-{{ photo.photoID }}"
           [(ngModel)]="photo.caption"
-          (onblur)="updateCaption(photo.photoID, photo.caption)"
-          (keyup.enter)="updateCaption(photo.photoID, photo.caption)"
+          (onblur)="captionSubmit(photo)"
+          (keyup.enter)="captionSubmit(photo)"
         />
       </div>
     </div>
     <div class="image-menu" *ngIf="photo.menu_active">
       <ul>
-        <li><a (click)="togglePhotoFullscreen(photo)">View Full Screen</a></li>
-        <li><a (click)="setAlbumImage(photo)">Set as Album Cover</a></li>
         <li>
-          <a (click)="togglePhotoEditMode(photo)"
+          <a
+            (click)="togglePhotoFullscreen(photo)"
+            (keyup.enter)="togglePhotoFullscreen(photo)"
+            tabindex="0"
+            >View Full Screen</a
+          >
+        </li>
+        <li>
+          <a
+            (click)="setAlbumImage(photo)"
+            (keyup.enter)="setAlbumImage(photo)"
+            tabindex="0"
+            >Set as Album Cover</a
+          >
+        </li>
+        <li>
+          <a (click)="togglePhotoEditMode(photo)" tabindex="0"
             ><span *ngIf="!photo.edit_mode">Enter Edit Mode</span
             ><span *ngIf="photo.edit_mode">Exit Edit Mode</span></a
           >
         </li>
-        <li><a (click)="deletePhoto(photo)">Delete</a></li>
+        <li><a (click)="deletePhoto(photo)" tabindex="0">Delete</a></li>
       </ul>
     </div>
   </div>
@@ -60,3 +85,23 @@
     (uploaded)="onUploadEnd()"
   ></rb-upload-form>
 </rb-modal>
+
+<div id="fullscreen-image" *ngIf="fullScreenImage">
+  <div id="fullscreen-overlay" (click)="closeFullScreen()"></div>
+  <button
+    class="btn btn-round btn-ghost"
+    (click)="closeFullScreen()"
+    id="fullscreen-close"
+  >
+    <i class="material-icons">close</i>
+  </button>
+  <img
+    [src]="fullScreenImage.path"
+    [alt]="fullScreenImage.caption !== 'null' ? fullScreenImage.caption : ''"
+  />
+</div>
+
+<rb-exif-panel
+  *ngIf="exifPanelState === 'active'"
+  [exif]="currentExif"
+></rb-exif-panel>
