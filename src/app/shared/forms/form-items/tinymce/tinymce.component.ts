@@ -1,10 +1,7 @@
-import { APIResponse } from 'src/app/shared/interfaces/api-response';
-
 import { Component, forwardRef, Input, OnInit } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 import { BlogService } from '../../../../blog/blog.service';
-import { Debug } from '../../../../global/debug';
 
 declare var tinymce: any;
 
@@ -55,8 +52,8 @@ export class TinymceComponent implements ControlValueAccessor {
       const formData = new FormData();
       formData.append('file', blobInfo.blob(), blobInfo.filename());
       this.blogService.postBlogImage(formData).subscribe(
-        (res: APIResponse) => {
-          success(res.response.results['uploads'][0]);
+        (res: any) => {
+          success(res['uploads'][0].file);
         },
         (err: any) => {
           error(err);
