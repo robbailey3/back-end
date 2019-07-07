@@ -13,6 +13,7 @@ import { GlobalModule } from './global/global.module';
 import { LoginComponent } from './login/login.component';
 import { NotificationsModule } from './notifications/notifications.module';
 import { PhotosModule } from './photos/photos.module';
+import { ServerAdminModule } from './server-admin/server-admin.module';
 import { JWTInterceptor } from './shared/http/jwt-interceptor';
 import { SharedModule } from './shared/shared.module';
 
@@ -30,6 +31,7 @@ import { SharedModule } from './shared/shared.module';
     HttpClientModule,
     FormsModule,
     NotificationsModule,
+    ServerAdminModule,
     BrowserAnimationsModule
   ],
   providers: [
