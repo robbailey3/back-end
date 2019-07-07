@@ -13,16 +13,16 @@
   }
 }
 
-:host() {
+:host {
   &.ng-valid {
     #chips-item-wrapper {
-      border-left: 5px solid #00BB20;
+      border-left: 5px solid #00bb20;
     }
   }
 
   &.ng-invalid.ng-touched {
     #chips-item-wrapper {
-      border-left: 5px solid #BB0020;
+      border-left: 5px solid #bb0020;
     }
   }
 }

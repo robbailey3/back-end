@@ -1,7 +1,7 @@
 @import '../../../styles/layout/grid';
 @import '../../../styles/components/colours';
 
-:host() {
+:host {
   position: relative;
   display: block;
 }
