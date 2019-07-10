@@ -1,5 +1,3 @@
-import { Debug } from 'src/app/global/debug';
-
 import { Component, forwardRef, Input } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
@@ -26,12 +24,17 @@ export class UploadComponent implements ControlValueAccessor {
   imagePreviews: HTMLImageElement[] = [];
   previewsLoaded = false;
   previewsLoading = false;
+
   constructor() {}
+
   onChange(_: any) {}
+
   writeValue(value: string): void {}
+
   registerOnChange(fn: any): void {
     this.onChange = fn;
   }
+
   registerOnTouched(): void {}
 
   change($event) {
@@ -50,6 +53,7 @@ export class UploadComponent implements ControlValueAccessor {
       console.error($e);
     }
   }
+
   generateFilePreviews(files: FileList) {
     this.previewsLoading = true;
     const imagePromises = [];
@@ -62,10 +66,11 @@ export class UploadComponent implements ControlValueAccessor {
       this.imagePreviews.push(...images);
     });
   }
+
   generateFilePreview(file: File) {
     return new Promise((resolve, reject) => {
       const fr = new FileReader();
-      fr.onload = e => {
+      fr.onload = (e) => {
         const img = new Image();
         img.src = e.target['result'];
         resolve(img);
@@ -76,6 +81,7 @@ export class UploadComponent implements ControlValueAccessor {
       fr.readAsDataURL(file);
     });
   }
+
   validateFiles(files: FileList): boolean {
     for (let i = 0; i < files.length; i += 1) {
       if (files.item(i).size > this.maxFileSize) {
