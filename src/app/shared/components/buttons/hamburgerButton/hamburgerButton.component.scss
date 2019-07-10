@@ -17,12 +17,12 @@
     height: 2px;
     width: 28px;
     margin: 5px auto;
-    background: #fff;
+    background: #111;
     border-radius: 4px;
   }
 
   &:hover,
   &:focus {
-    background: rgba(#fff, 0.1);
+    background: rgba(#111, 0.1);
   }
 }

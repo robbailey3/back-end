@@ -1,9 +1,8 @@
-import { Subscription } from 'rxjs';
 import { Notification } from 'src/app/notifications/notification';
 import { NotificationService } from 'src/app/notifications/notification.service';
 import { DialogService } from 'src/app/shared/dialog/dialog.service';
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 
 import { listAnimation } from '../../shared/animations/src/list.animation';
 import { APIResponse } from '../../shared/interfaces/api-response';
@@ -14,36 +13,37 @@ import { TodoService } from './todo.service';
   selector: 'rb-todo-list',
   templateUrl: './todo-list.component.html',
   styleUrls: ['./todo-list.component.scss'],
-  animations: [listAnimation]
+  animations: [listAnimation],
+  encapsulation: ViewEncapsulation.None
 })
 export class TodoListComponent implements OnInit {
-  todos: Todo[];
-  newTodo: string;
+  public todos: Todo[];
+  public newTodo: string;
   constructor(
     private service: TodoService,
     private notification: NotificationService,
     private dialogService: DialogService
   ) {}
 
-  ngOnInit() {
+  public ngOnInit() {
     this.getData();
   }
-  getData() {
+  public getData() {
     this.service.getTodos().subscribe((response: APIResponse) => {
       this.todos = response.response.results as Todo[];
     });
   }
-  checkboxChecked($event, todoID) {
+  public checkboxChecked($event, todoID) {
     this.service.changeTodoStatus(todoID, $event).subscribe();
   }
-  submitTodo() {
+  public submitTodo() {
     const data = { todo: this.newTodo };
     this.service.newTodo(data).subscribe(() => {
       this.getData();
       this.newTodo = '';
     });
   }
-  deleteTodo(todo: Todo) {
+  public deleteTodo(todo: Todo) {
     this.dialogService
       .confirm({
         title: 'Delete Todo?',
