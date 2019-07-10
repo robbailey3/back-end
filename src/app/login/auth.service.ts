@@ -1,4 +1,4 @@
-import { environment } from '/environments/environment';
+import { environment } from '../../environments/environment';
 import * as jwtDecode from 'jwt-decode';
 
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
