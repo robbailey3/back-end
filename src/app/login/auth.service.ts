@@ -1,6 +1,5 @@
+import { environment } from '/environments/environment';
 import * as jwtDecode from 'jwt-decode';
-import { Observable } from 'rxjs';
-import { environment } from 'src/environments/environment';
 
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -13,9 +12,9 @@ import { APIResponse } from '../shared/interfaces/api-response';
 export class AuthService {
   private readonly loginURL = `${environment.apiURL}/login`;
   private readonly refreshURL = `${environment.apiURL}/token`;
-  jwt: string;
+  public jwt: string;
   constructor(private http: HttpClient) {}
-  login(credentials: object): Promise<any> {
+  public login(credentials: object): Promise<any> {
     return new Promise((resolve, reject) => {
       this.http.post(this.loginURL, credentials).subscribe(
         (res: APIResponse) => {
@@ -39,13 +38,13 @@ export class AuthService {
       );
     });
   }
-  logout(): void {
+  public logout(): void {
     if ('localStorage' in window) {
       localStorage.removeItem('jwt');
       this.jwt = '';
     }
   }
-  getTokenFromStorage() {
+  public getTokenFromStorage() {
     if ('localStorage' in window) {
       const jwt = localStorage.getItem('jwt');
       if (jwt) {
@@ -53,7 +52,7 @@ export class AuthService {
       }
     }
   }
-  tokenIsValid(): boolean {
+  public tokenIsValid(): boolean {
     this.jwt = this.jwt || localStorage.getItem('jwt') || undefined;
     if (this.jwt) {
       const decoded = jwtDecode(this.jwt);
@@ -61,7 +60,7 @@ export class AuthService {
     }
     return false;
   }
-  refreshToken(): void {
+  public refreshToken(): void {
     if (this.jwt || localStorage.getItem('jwt')) {
       this.http.get(this.refreshURL).subscribe((res: APIResponse) => {
         if (res.response.results['JWT']) {
