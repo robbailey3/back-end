@@ -22,6 +22,6 @@ export class ServerAdminService {
    * @returns
    */
   public getDroplets(): Observable<APIResponse> {
-    return this.http.get(`${this.URL_BASE}/droplets`);
+    return this.http.get<APIResponse>(`${this.URL_BASE}/droplets`);
   }
 }

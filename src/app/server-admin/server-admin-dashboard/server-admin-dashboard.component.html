@@ -1,4 +1,8 @@
-<p>server-admin-dashboard works!</p>
-<pre
+<!-- <pre
   >{{ droplets | json }}
-</pre>
+</pre> -->
+<rb-card class="droplets col-md-6" *ngFor="let droplet of droplets">
+  <p>{{ droplet.name }}</p>
+  <p>{{ droplet.image.name }}</p>
+  <p>{{ droplet.image.size_gigabytes }}GB</p>
+</rb-card>

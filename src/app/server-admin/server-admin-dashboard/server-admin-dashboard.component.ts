@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { APIResponse } from 'src/app/shared/interfaces/api-response';
+import { APIResponse } from '../../shared/interfaces/api-response';
 import { ServerAdminService } from '../server-admin.service';
 
 @Component({
@@ -17,7 +17,7 @@ export class ServerAdminDashboardComponent implements OnInit {
 
   public getData() {
     this.service.getDroplets().subscribe((res: APIResponse) => {
-      this.droplets = res.response.results;
+      this.droplets = res.response.results['droplets'];
     });
   }
 }

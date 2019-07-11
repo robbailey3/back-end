@@ -36,10 +36,13 @@ export class LoginComponent implements OnInit {
       validators: [Validators.required, Validators.minLength(6)]
     })
   ];
-  submitLoginForm(val: any) {
+  public submitLoginForm(val: any) {
     this.authService
       .login(val)
       .then(() => {
+        this.notification.addNotification(
+          new Notification('Logged in successfully', 'success', true)
+        );
         this.router.navigate(['/']);
       })
       .catch((err: any) => {
@@ -51,5 +54,5 @@ export class LoginComponent implements OnInit {
       });
   }
 
-  ngOnInit() {}
+  public ngOnInit() {}
 }
