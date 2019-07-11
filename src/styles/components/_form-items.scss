@@ -51,10 +51,10 @@
   }
 
   &.ng-valid {
-    border-left: 5px solid #00bb20;
+    border-bottom-color: #00bb20;
   }
 
   &.ng-invalid.ng-touched {
-    border-left: 5px solid #bb0020;
+    border-color: #bb0020;
   }
 }
