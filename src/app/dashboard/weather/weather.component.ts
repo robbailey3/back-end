@@ -2,7 +2,7 @@ import { Debug } from 'src/app/global/debug';
 import { APIResponse } from 'src/app/shared/interfaces/api-response';
 import { LocationService } from 'src/app/shared/services/location.service';
 
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 import { Weather } from './weather';
 import { WeatherService } from './weather.service';
@@ -13,29 +13,31 @@ import { WeatherService } from './weather.service';
   styleUrls: ['./weather.component.scss']
 })
 export class WeatherComponent implements OnInit {
+  @Output()
+  public fullscreen: EventEmitter<boolean> = new EventEmitter<boolean>();
+  public fullscreenActive = false;
   public location: Coordinates;
   public locationName: string;
   public fullLocationDetails: any;
   public lastKnownWeather: Weather;
   public weather: Weather;
-
   constructor(
     private locationService: LocationService,
     private weatherService: WeatherService
   ) {}
 
-  ngOnInit() {
+  public ngOnInit() {
     this.getLastKnownLocation();
     this.getLocation();
   }
-  getLastKnownLocation(): void {
+  public getLastKnownLocation(): void {
     if ('localStorage' in window) {
       if (localStorage.getItem('last_known_location')) {
         this.location = JSON.parse(localStorage.getItem('last_known_location'));
       }
     }
   }
-  getLocation(): void {
+  public getLocation(): void {
     this.locationService
       .getLocation()
       .then((result: Position) => {
@@ -47,7 +49,7 @@ export class WeatherComponent implements OnInit {
         this.getWeather();
       });
   }
-  storeLocation(): void {
+  public storeLocation(): void {
     if ('localStorage' in window) {
       localStorage.setItem(
         'last_known_location',
@@ -58,7 +60,7 @@ export class WeatherComponent implements OnInit {
       );
     }
   }
-  getLocationName() {
+  public getLocationName() {
     this.locationService
       .getLocationName(this.location.latitude, this.location.longitude)
       .then((res: any) => {
@@ -66,12 +68,17 @@ export class WeatherComponent implements OnInit {
         this.fullLocationDetails = res;
       });
   }
-  getWeather() {
+  public getWeather() {
     this.weatherService
       .getWeather(this.location.latitude, this.location.longitude)
       .subscribe((res: APIResponse) => {
         this.weather = res.response.results[0] as Weather;
         Debug.log(this.weather);
       });
+  }
+
+  public toggleFullscreen(): void {
+    this.fullscreenActive = !this.fullscreenActive;
+    this.fullscreen.emit(this.fullscreenActive);
   }
 }

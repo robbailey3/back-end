@@ -6,10 +6,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./dashboard-root.component.scss']
 })
 export class DashboardRootComponent implements OnInit {
+  public weatherActive: boolean;
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit() {
+  public ngOnInit() {}
+
+  public toggleWeather($event: boolean) {
+    this.weatherActive = $event;
   }
-
 }

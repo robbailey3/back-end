@@ -1,6 +1,18 @@
 <rb-card *ngIf="location" class="flex-container">
+  <button
+    id="weather-toggle-fullscreen"
+    class="btn btn-ghost btn-round"
+    (click)="toggleFullscreen()"
+  >
+    <i class="material-icons">
+      fullscreen
+    </i>
+  </button>
   <div id="coords-container">
-    <span id="coords">{{ location.latitude | number: '2.2-2' }}&deg; {{ location.longitude | number: '2.2-2' }}&deg; </span>
+    <span id="coords"
+      >{{ location.latitude | number: '2.2-2' }}&deg;
+      {{ location.longitude | number: '2.2-2' }}&deg;
+    </span>
   </div>
   <div id="location-name" *ngIf="locationName">
     <h2>{{ locationName }}</h2>
@@ -8,7 +20,10 @@
   <div id="weather" *ngIf="weather" class="flex-container">
     <div class="col-lg-4 current-weather">
       <div class="current-temp">
-        <p class="temp">{{ weather.currently.temperature | number: '1.0-0' }}<span class="units">&deg;C</span></p>
+        <p class="temp">
+          {{ weather.currently.temperature | number: '1.0-0'
+          }}<span class="units">&deg;C</span>
+        </p>
       </div>
       <div class="current-description">
         <p>{{ weather.currently.summary }}</p>
@@ -22,11 +37,18 @@
     </div>
 
     <div class="col-lg-8 flex-container forecast">
-      <div class="forecast-day" *ngFor="let day of weather.daily.data.slice(1, 6)">
+      <div
+        class="forecast-day"
+        *ngFor="let day of weather.daily.data.slice(1, 6)"
+      >
         <p class="day-title">{{ day.time * 1000 | date: 'EEEE' }}</p>
-        <p class="day-summary">{{ day.summary}}</p>
-        <p><span>Max: </span>{{ day.temperatureMax | number: '0.1-1' }}&deg;C</p>
-        <p><span>Min: </span>{{ day.temperatureMin | number: '0.1-1' }}&deg;C</p>
+        <p class="day-summary">{{ day.summary }}</p>
+        <p>
+          <span>Max: </span>{{ day.temperatureMax | number: '0.1-1' }}&deg;C
+        </p>
+        <p>
+          <span>Min: </span>{{ day.temperatureMin | number: '0.1-1' }}&deg;C
+        </p>
       </div>
     </div>
     <div id="attributation">

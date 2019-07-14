@@ -5,9 +5,15 @@
 }
 
 rb-card {
-  padding: 4px 16px;
+  padding: 38px 16px 4px;
+  display: block;
+  position: relative;
 }
-
+#weather-toggle-fullscreen {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+}
 #coords-container,
 #location-name,
 #location-name h2 {
