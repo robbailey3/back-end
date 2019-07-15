@@ -9,9 +9,10 @@ import { DashboardRootComponent } from './dashboard-root/dashboard-root.componen
 import { TodoListComponent } from './todo-list/todo-list.component';
 import { TodoService } from './todo-list/todo.service';
 import { WeatherComponent } from './weather/weather.component';
+import { WeatherIconComponent } from './weather/weather-icon/weather-icon.component';
 
 @NgModule({
-  declarations: [TodoListComponent, DashboardRootComponent, WeatherComponent],
+  declarations: [TodoListComponent, DashboardRootComponent, WeatherComponent, WeatherIconComponent],
   imports: [CommonModule, SharedModule, FormsModule, NotificationsModule],
   providers: [TodoService, DialogService]
 })

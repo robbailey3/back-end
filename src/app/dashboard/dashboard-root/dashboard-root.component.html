@@ -1,5 +1,4 @@
 <rb-flex-container id="page-content">
-  <rb-todo-list class="col-md-4 dashboard-item"></rb-todo-list>
   <rb-weather
     class="dashboard-item"
     [class.col-md-8]="!weatherActive"
@@ -7,4 +6,5 @@
     [class.active]="weatherActive"
     (fullscreen)="toggleWeather($event)"
   ></rb-weather>
+  <rb-todo-list class="col-md-4 dashboard-item"></rb-todo-list>
 </rb-flex-container>
