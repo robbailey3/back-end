@@ -4,9 +4,7 @@
     class="btn btn-ghost btn-round"
     (click)="toggleFullscreen()"
   >
-    <i class="material-icons">
-      fullscreen
-    </i>
+    <i class="material-icons"> fullscreen </i>
   </button>
   <div id="coords-container">
     <span id="coords"
@@ -18,7 +16,7 @@
     <h2>{{ locationName }}</h2>
   </div>
   <div id="weather" *ngIf="weather" class="flex-container">
-    <div class="col-lg-4 current-weather">
+    <div class="col-lg-3 current-weather">
       <div class="current-temp">
         <p class="temp">
           {{ weather.currently.temperature | number: '1.0-0'
@@ -26,17 +24,59 @@
         </p>
       </div>
       <div class="current-description">
+        <rb-weather-icon
+          [icon]="weather.currently.icon"
+          [width]="80"
+          [height]="80"
+        ></rb-weather-icon>
         <p>{{ weather.currently.summary }}</p>
       </div>
-      <div class="current-wind" style="display: none;">
-        <div class="wind-bearing">
-          <p>{{ weather.currently.windBearing }}</p>
-          <p>{{ weather.currently.windSpeed }}</p>
+      <div id="weather-currently-info" class="flex-container">
+        <div class="col-xs-6 current-info-section">
+          <h3>Chance of Rain</h3>
+          <p class="info-value">
+            {{ weather.currently.precipProbability * 100 }}%
+          </p>
+        </div>
+        <div class="col-xs-6 current-info-section">
+          <h3>Realfeel&trade;</h3>
+          <p class="info-value">
+            {{ weather.currently.apparentTemperature | number: '1.0-0' }}&deg;C
+          </p>
+        </div>
+        <div class="col-xs-6 current-info-section">
+          <h3>Wind Speed</h3>
+          <p class="info-value">{{ weather.currently.windSpeed }}mph</p>
+        </div>
+        <div class="col-xs-6 current-info-section">
+          <h3>Humidity</h3>
+          <p class="info-value">{{ weather.currently.humidity * 100 }}%</p>
         </div>
       </div>
     </div>
-
-    <div class="col-lg-8 flex-container forecast">
+    <div class="col-lg-9 flex-container" id="forecast-hour-container">
+      <div
+        *ngFor="let hour of weather.hourly.data.slice(1, 13)"
+        class="forecast-hour col-lg-1 col-md-4 col-sm-6"
+      >
+        <h3>{{ hour.time * 1000 | date: 'ha' }}</h3>
+        <rb-weather-icon
+          [icon]="hour.icon"
+          [height]="35"
+          [width]="35"
+        ></rb-weather-icon>
+        <p class="hour-temperature">
+          {{ hour.temperature | number: '1.0-0'
+          }}<span class="units">&deg;C</span>
+        </p>
+        <p class="hour-humidity">
+          {{ hour.humidity * 100 | number: '1.0-0'
+          }}<span class="units">%</span>
+        </p>
+        <!-- <pre>{{ hour | json }}</pre> -->
+      </div>
+    </div>
+    <div class="col-lg-12 flex-container forecast" *ngIf="fullscreenActive">
       <div
         class="forecast-day"
         *ngFor="let day of weather.daily.data.slice(1, 6)"
@@ -51,11 +91,7 @@
         </p>
       </div>
     </div>
-    <div id="attributation">
-      <span>Powered by DarkSky Weather</span>
-    </div>
+    <div id="attributation"><span>Powered by DarkSky Weather</span></div>
   </div>
-  <div id="loader" *ngIf="!weather || !location">
-    <rb-loader></rb-loader>
-  </div>
+  <div id="loader" *ngIf="!weather || !location"><rb-loader></rb-loader></div>
 </rb-card>

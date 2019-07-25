@@ -73,7 +73,6 @@ export class WeatherComponent implements OnInit {
       .getWeather(this.location.latitude, this.location.longitude)
       .subscribe((res: APIResponse) => {
         this.weather = res.response.results[0] as Weather;
-        Debug.log(this.weather);
       });
   }
 
