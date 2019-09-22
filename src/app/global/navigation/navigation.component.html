@@ -62,6 +62,14 @@
       </li>
       <li>
         <a
+          [routerLink]="['project-tracker']"
+          (click)="toggleMenuMobile()"
+          routerLinkActive="active"
+          >Project Tracker</a
+        >
+      </li>
+      <li>
+        <a
           [routerLink]="['errors']"
           (click)="toggleMenuMobile()"
           routerLinkActive="active"
