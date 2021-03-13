@@ -1,8 +1,6 @@
 # Backend
 
-**Note:** This is currently a work in progress.
-
-![Gif of a cat](https://media.giphy.com/media/o0vwzuFwCGAFO/giphy.gif)
+Note: This project is no longer maintained
 
 ## What is this project?
 
